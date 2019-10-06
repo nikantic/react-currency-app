@@ -38,9 +38,7 @@ class CurrencyComponent extends Component {
             <small>(1 {this.props.baseCur})</small>
           </span>
           <small>{this.state.fullName}</small>
-          <span className="CurrencyComponentRightSideButton">
-            Convert To / From
-          </span>
+          <span className="CurrencyComponentRightSideButton">Convert To</span>
         </div>
       </li>
     );

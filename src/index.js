@@ -2,17 +2,11 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import CurrencyComponent from "./CurrencyComponent/CurrencyComponent";
 import BaseComponent from "./BaseComponent/BaseComponent";
-import LoaderComponent from './UI/LoaderComponent/LoaderComponent';
-import SidebarComponent from './UI/SidebarComponent/SidebarComponent';
+import LoaderComponent from "./UI/LoaderComponent/LoaderComponent";
+import SidebarComponent from "./UI/SidebarComponent/SidebarComponent";
+import ConverterComponent from "./ConverterComponent/ConverterComponent";
 
 import "./styles.css";
-
-// cool loader - calculating rates, lobbying etc
-// currency component - convert to/from or set as base
-// calculator component
-// hover effects
-// mobile support - transition to top of the page when clicking
-// optimization - json save and error handling (404 and for components)
 
 class ExchangeRates extends Component {
   state = {
@@ -37,11 +31,13 @@ class ExchangeRates extends Component {
     this.fetchAPI();
   }
 
-  ComponentClickHandler = (newCurrency) => {
+  ComponentClickHandler = newCurrency => {
     this.setState({ baseAPICurrency: newCurrency }, () => {
       this.fetchAPI();
     });
-    document.querySelector('.ContentHolder').scroll({top: 0, left: 0, behavior: 'smooth' })
+    document
+      .querySelector(".ContentHolder")
+      .scroll({ top: 0, left: 0, behavior: "smooth" });
   };
 
   render() {
@@ -76,10 +72,11 @@ class ExchangeRates extends Component {
             <h2>Exchange Rates:</h2>
             <ul>{displayRates}</ul>
           </div>
+          <ConverterComponent baseCurrency={data["base"]} />
         </div>
       );
     } else {
-      return <LoaderComponent />
+      return <LoaderComponent />;
     }
   }
 }
