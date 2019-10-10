@@ -2,31 +2,50 @@ import React, { Component } from "react";
 
 class ConverterComponent extends Component {
   state = {
-    baseVal: 1,
-    targetVal: 1.4,
-    get ratio() {
-      return this.targetVal / this.baseVal;
-    }
+    baseCur: this.props.baseCurrency,
+    targetCur: this.props.targetCurrency["name"],
+    baseInput: 1,
+    targetInput: this.props.targetCurrency["value"]
   };
 
   CalcNewValues = keyName => {
-    if (keyName === "baseVal") {
+    if (keyName === "baseInput") {
       this.setState({
-        targetVal: (this.state.baseVal * this.state.ratio).toFixed(2)
+        targetInput: parseFloat(
+          (this.state.baseInput * this.props.targetCurrency["value"]).toFixed(2)
+        )
       });
-    } else if (keyName === "targetVal") {
+    } else if (keyName === "targetInput") {
       this.setState({
-        baseVal: (this.state.targetVal / this.state.ratio).toFixed(2)
+        baseInput: parseFloat(
+          (this.state.targetInput / this.props.targetCurrency["value"]).toFixed(
+            2
+          )
+        )
       });
     }
   };
 
   ChangeHandler = event => {
     const inputName = event.target.name;
-    this.setState({ [inputName]: event.target.value }, () => {
+    this.setState({ [inputName]: parseFloat(event.target.value) }, () => {
       this.CalcNewValues(inputName);
     });
   };
+
+  componentDidUpdate() {
+    // update input values in case currencies props change
+    if (
+      this.state.baseCur !== this.props.baseCurrency ||
+      this.state.targetCur !== this.props.targetCurrency["name"]
+    ) {
+      this.setState({
+        baseCur: this.props.baseCurrency,
+        targetCur: this.props.targetCurrency["name"]
+      });
+      this.CalcNewValues("baseInput");
+    }
+  }
 
   render() {
     return (
@@ -36,17 +55,17 @@ class ConverterComponent extends Component {
           <span>Base Currency: {this.props.baseCurrency}</span>
           <input
             type="number"
-            name="baseVal"
-            value={this.state.baseVal}
+            name="baseInput"
+            value={this.state.baseInput}
             onChange={this.ChangeHandler}
           />
         </div>
         <div>
-          <span>Target Currency: CAD (for now fixed)</span>
+          <span>Target Currency: {this.props.targetCurrency["name"]}</span>
           <input
             type="number"
-            name="targetVal"
-            value={this.state.targetVal}
+            name="targetInput"
+            value={this.state.targetInput}
             onChange={this.ChangeHandler}
           />
         </div>

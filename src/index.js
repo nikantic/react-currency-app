@@ -11,30 +11,44 @@ import "./styles.css";
 class ExchangeRates extends Component {
   state = {
     baseAPICurrency: "EUR",
+    targetCurrency: {
+      name: "USD",
+      value: 0
+    },
     data: []
   };
 
-  fetchAPI = () => {
-    const url =
-      "https://api.exchangeratesapi.io/latest?base=" +
-      this.state.baseAPICurrency;
+  fetchAPI = newCur => {
+    const url = "https://api.exchangeratesapi.io/latest?base=" + newCur;
 
     fetch(url)
       .then(result => result.json())
       .then(result => {
-        this.setState({ data: result });
+        this.setState(prevState => ({
+          baseAPICurrency: newCur,
+          data: result,
+          targetCurrency: {
+            ...prevState.targetCurrency,
+            value: result["rates"][this.state.targetCurrency.name]
+          }
+        }));
       })
       .catch(error => console.log(error.message));
   };
 
   componentDidMount() {
-    this.fetchAPI();
+    this.fetchAPI(this.state.baseAPICurrency);
   }
 
-  ComponentClickHandler = newCurrency => {
-    this.setState({ baseAPICurrency: newCurrency }, () => {
-      this.fetchAPI();
-    });
+  BaseClickHandler = newCurrency => {
+    this.fetchAPI(newCurrency);
+    document
+      .querySelector(".ContentHolder")
+      .scroll({ top: 0, left: 0, behavior: "smooth" });
+  };
+
+  TargetClickHandler = (newCurrency, newValue) => {
+    this.setState({ targetCurrency: { name: newCurrency, value: newValue } });
     document
       .querySelector(".ContentHolder")
       .scroll({ top: 0, left: 0, behavior: "smooth" });
@@ -54,7 +68,8 @@ class ExchangeRates extends Component {
               name={key}
               value={rates[key]}
               baseCur={data["base"]}
-              clicked={this.ComponentClickHandler.bind(this)}
+              clickedBase={this.BaseClickHandler.bind(this)}
+              clickedTarget={this.TargetClickHandler.bind(this)}
             />
           );
         }
@@ -72,7 +87,10 @@ class ExchangeRates extends Component {
             <h2>Exchange Rates:</h2>
             <ul>{displayRates}</ul>
           </div>
-          <ConverterComponent baseCurrency={data["base"]} />
+          <ConverterComponent
+            baseCurrency={data["base"]}
+            targetCurrency={this.state.targetCurrency}
+          />
         </div>
       );
     } else {

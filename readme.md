@@ -16,6 +16,7 @@
 // perhaps include chart.js
 // thinking of combining converter on the top of the page
 // set as base or target shouldnt appear if its already set (remove the whole component actually)
+// fix empty input error 0
 
 // credits:
 // flat icons

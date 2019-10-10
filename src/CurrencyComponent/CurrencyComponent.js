@@ -20,25 +20,30 @@ class CurrencyComponent extends Component {
 
   render() {
     return (
-      <li
-        className="CurrencyComponent"
-        key={this.props.value}
-        onClick={e => this.props.clicked(this.props.name)}
-      >
+      <li className="CurrencyComponent" key={this.props.value}>
         <div className="CurrencyComponentLeftSide">
           <img alt={this.state.fullName} src={this.state.imgLoc} />
         </div>
         <div className="CurrencyComponentRightSide">
           <div className="CurrencyComponentRightSideTop">
             <strong>{this.props.name}</strong>
-            <span>(Set as base)</span>
+            <span onClick={e => this.props.clickedBase(this.props.name)}>
+              (Set as base)
+            </span>
           </div>
           <span className="CurrencyComponentRightSideValue">
             {this.props.value.toFixed(3)}{" "}
             <small>(1 {this.props.baseCur})</small>
           </span>
           <small>{this.state.fullName}</small>
-          <span className="CurrencyComponentRightSideButton">Convert To</span>
+          <span
+            className="CurrencyComponentRightSideButton"
+            onClick={e =>
+              this.props.clickedTarget(this.props.name, this.props.value)
+            }
+          >
+            Set as target
+          </span>
         </div>
       </li>
     );
