@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import CurrencyComponent from "./CurrencyComponent/CurrencyComponent";
-import BaseComponent from "./BaseComponent/BaseComponent";
 import LoaderComponent from "./UI/LoaderComponent/LoaderComponent";
 import SidebarComponent from "./UI/SidebarComponent/SidebarComponent";
 import ConverterComponent from "./ConverterComponent/ConverterComponent";
@@ -80,17 +79,16 @@ class ExchangeRates extends Component {
       // MAIN RENDER
       return (
         <div>
-          <SidebarComponent />
+          {/* <SidebarComponent /> */}
           <div className="ContentHolder">
-            <BaseComponent currency={data["base"]} />
+            <ConverterComponent
+              baseCurrency={data["base"]}
+              targetCurrency={this.state.targetCurrency}
+            />
             <h4>Date: {data["date"]}</h4>
             <h2>Exchange Rates:</h2>
             <ul>{displayRates}</ul>
           </div>
-          <ConverterComponent
-            baseCurrency={data["base"]}
-            targetCurrency={this.state.targetCurrency}
-          />
         </div>
       );
     } else {
