@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import findCurrencyData from "../currency_data";
+import ExchangeArrowSVG from "../UI/ExchangeArrowSVG/ExchangeArrowSVG";
 
 class ConverterComponent extends Component {
   state = {
@@ -16,10 +17,6 @@ class ConverterComponent extends Component {
     baseInput: 1,
     targetInput: this.props.targetCurrency["value"]
   };
-
-  // const baseCur = props.currency,
-  // baseImgUrl = "../assets/img/" + baseCur + ".png",
-  // baseCurInfo = findCurrencyData(this.props.baseCurrency);
 
   CalcNewValues = keyName => {
     if (keyName === "baseInput") {
@@ -71,11 +68,18 @@ class ConverterComponent extends Component {
   render() {
     return (
       <div className="ConverterComponent">
-        <h2>Convert To / From in realtime</h2>
-        <div>
-          <div>Full Name: {this.state.baseCur["other"]["name"]}</div>
-          <div>Country: {this.state.baseCur["other"]["country"]}</div>
-          <img alt={this.props.baseCurrency} src={this.state.baseCur["img"]} />
+        <h1>Converter From / To in real time</h1>
+        <div className="ConverterComponentCurrency">
+          <div className="ConverterComponentCurrencyTopInfo">
+            <img
+              alt={this.props.baseCurrency}
+              src={this.state.baseCur["img"]}
+            />
+            <div className="ConverterComponentCurrencyTopInfoContent">
+              <h2>{this.props.baseCurrency}</h2>
+              <h4>{this.state.baseCur["other"]["name"]}</h4>
+            </div>
+          </div>
           <div className="ConverterComponentInputHolder">
             <input
               type="number"
@@ -86,16 +90,18 @@ class ConverterComponent extends Component {
             <span>{this.props.baseCurrency}</span>
           </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <div>
-          <div>Full Name: {this.state.targetCur["other"]["name"]}</div>
-          <div>Country: {this.state.targetCur["other"]["country"]}</div>
-          <img
-            alt={this.props.targetCurrency["name"]}
-            src={this.state.targetCur["img"]}
-          />
+        <ExchangeArrowSVG />
+        <div className="ConverterComponentCurrency">
+          <div className="ConverterComponentCurrencyTopInfo">
+            <img
+              alt={this.props.targetCurrency["name"]}
+              src={this.state.targetCur["img"]}
+            />
+            <div className="ConverterComponentCurrencyTopInfoContent">
+              <h2>{this.props.targetCurrency["name"]}</h2>
+              <h4>{this.state.targetCur["other"]["name"]}</h4>
+            </div>
+          </div>
           <div className="ConverterComponentInputHolder">
             <input
               type="number"

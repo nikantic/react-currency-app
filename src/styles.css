@@ -21,24 +21,26 @@ body {
   width: 500px;
   height: 100%;
   display: inline-block;
-  background: grey;
+  background-color: #eaeaea;
 }
 
 .ContentHolder {
   width: 100%;
   overflow-y: scroll;
+  background: #f9f9f9;
 }
 
 .CurrencyComponent {
   position: relative;
   display: inline-flex;
-  margin: 10px;
-  width: 300px;
-  height: 120px;
+  margin: 16px 12px;
+  width: 336px;
+  height: 147px;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: #fff;
 }
 
 .CurrencyComponent:hover {
@@ -159,18 +161,96 @@ body {
   }
 }
 
-.ConverterComponent input {
-  max-width: 326px;
+.ConverterComponent {
+  box-shadow: 0 -8px 20px 0px rgba(0, 0, 0, 0.11);
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  background: #fff;
+}
+
+.ConverterComponent > h1 {
+  margin: 0;
+  margin-left: 65px;
+  padding-top: 40px;
+}
+
+.ConverterComponentCurrency {
+  display: inline-block;
+  margin-right: 70px;
+  margin: 50px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 26px;
+}
+
+.ConverterComponentCurrencyTopInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.ConverterComponentCurrencyTopInfo img {
+  width: 106px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.ConverterComponentCurrencyTopInfoContent {
+  margin-left: 20px;
+}
+
+.ConverterComponentCurrencyTopInfoContent > h2 {
+  margin: 10px 5px;
+}
+
+.ConverterComponentCurrencyTopInfoContent > h4 {
+  margin: 10px 5px;
+  font-weight: 400;
+}
+
+.ConverterComponentInputHolder {
+  position: relative;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.ConverterComponentInputHolder input {
+  max-width: 264px;
   font-size: 41px;
-  border: 1px solid #dedede;
+  border: none;
   margin: 0 auto;
   font-weight: 300;
   border-radius: 2px;
-  padding: 15px;
-  background: #f3f3f3;
+  padding: 13px;
+  margin-right: 60px;
+}
+
+.ConverterComponentInputHolder input:focus {
+  outline: none;
+  -webkit-appearance: none;
 }
 
 .ConverterComponentInputHolder span {
-  font-size: 32px;
-  margin-left: 10px;
+  position: absolute;
+  font-size: 24px;
+  right: 11px;
+  top: 26px;
+}
+
+.ExchangeArrowSVG {
+  width: 30px;
+}
+
+.ExchangeRatesContent h2 {
+  margin-left: 40px;
+  margin-top: 39px;
+}
+
+.ExchangeRatesContent h4 {
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+ul {
+  padding-left: 30px;
 }

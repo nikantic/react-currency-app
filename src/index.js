@@ -79,15 +79,17 @@ class ExchangeRates extends Component {
       // MAIN RENDER
       return (
         <div>
-          {/* <SidebarComponent /> */}
+          <SidebarComponent />
           <div className="ContentHolder">
             <ConverterComponent
               baseCurrency={data["base"]}
               targetCurrency={this.state.targetCurrency}
             />
-            <h4>Date: {data["date"]}</h4>
-            <h2>Exchange Rates:</h2>
-            <ul>{displayRates}</ul>
+            <div className="ExchangeRatesContent">
+              <h2>Exchange Rates</h2>
+              <h4>Date: {data["date"]}</h4>
+              <ul>{displayRates}</ul>
+            </div>
           </div>
         </div>
       );
