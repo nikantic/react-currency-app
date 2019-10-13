@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import findCurrencyData from "../currency_data";
 import ExchangeArrowSVG from "../UI/ExchangeArrowSVG/ExchangeArrowSVG";
@@ -43,6 +44,10 @@ class ConverterComponent extends Component {
     });
   };
 
+  FocusInput() {
+    ReactDOM.findDOMNode(this.refs.baseInput).focus();
+  }
+
   componentDidUpdate() {
     // update input values in case currencies props change
     if (
@@ -62,7 +67,14 @@ class ConverterComponent extends Component {
         }
       });
       this.CalcNewValues("baseInput");
+      setTimeout(() => {
+        this.FocusInput();
+      }, 1000);
     }
+  }
+
+  componentDidMount() {
+    this.FocusInput();
   }
 
   render() {
@@ -84,6 +96,7 @@ class ConverterComponent extends Component {
             <input
               type="number"
               name="baseInput"
+              ref="baseInput"
               value={this.state.baseInput}
               onChange={this.ChangeHandler}
             />

@@ -54,6 +54,30 @@ const currencyData = {
   DKK: {
     name: "Danish Krone",
     country: "Denmark"
+  },
+  HRK: {
+    name: "Croatian Kuna",
+    country: "Croatia"
+  },
+  SEK: {
+    name: "Swedish Krona",
+    country: "Sweden"
+  },
+  IDR: {
+    name: "	Indonesian Rupiah",
+    country: "Indonesia"
+  },
+  INR: {
+    name: "	Indian Rupee",
+    country: "India"
+  },
+  AUD: {
+    name: "	Australian Dollar",
+    country: "Australia"
+  },
+  RON: {
+    name: "	Romanian Leu",
+    country: "Romania"
   }
 };
 
