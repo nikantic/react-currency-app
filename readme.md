@@ -11,10 +11,8 @@
 // design - dont waste time here
 // sidebar component (menu, logo, buttons (kudos, send feedback), links)
 // animations and everything (how to have loader for each component, scroll etc react spring)
-// convertor component
 // mobile responsive
 // perhaps include chart.js for bitcoin app, thats hot right now
-// thinking of combining converter on the top of the page
 // set as base or target shouldnt appear if its already set (remove the whole component actually)
 // fix empty input error 0
 // also, if input smaller than 0 stop updating

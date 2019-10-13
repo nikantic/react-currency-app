@@ -78,6 +78,30 @@ const currencyData = {
   RON: {
     name: "	Romanian Leu",
     country: "Romania"
+  },
+  NOK: {
+    name: "Norwegian Krone",
+    country: "Norway"
+  },
+  TRY: {
+    name: "Turkish Lira",
+    country: "Turkey"
+  },
+  BGN: {
+    name: "Bulgarian Lev",
+    country: "Bulgaria"
+  },
+  MYR: {
+    name: "Malaysian Ringgit",
+    country: "Malaysia"
+  },
+  CHF: {
+    name: "Swiss Franc",
+    country: "Switzerland"
+  },
+  THB: {
+    name: "Thai Baht",
+    country: "Thailand"
   }
 };
 
