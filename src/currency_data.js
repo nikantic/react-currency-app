@@ -32,7 +32,7 @@ const currencyData = {
     country: "Czech Republic"
   },
   CNY: {
-    name: "Chinese Yuan Renminbi",
+    name: "Chinese Renminbi",
     country: "China"
   },
   RUB: {
@@ -102,6 +102,34 @@ const currencyData = {
   THB: {
     name: "Thai Baht",
     country: "Thailand"
+  },
+  SGD: {
+    name: "Singapore Dollar",
+    country: "Singapore"
+  },
+  PLN: {
+    name: "Polish Zloty",
+    country: "Poland"
+  },
+  NZD: {
+    name: "New Zealand Dollar",
+    country: "New Zealand"
+  },
+  ZAR: {
+    name: "South African Rand",
+    country: "South Africa"
+  },
+  MXN: {
+    name: "Mexican Peso",
+    country: "Mexico"
+  },
+  ILS: {
+    name: "	Israeli Shekel",
+    country: "Israel"
+  },
+  KRW: {
+    name: "South Korean Won",
+    country: "South Korea"
   }
 };
 

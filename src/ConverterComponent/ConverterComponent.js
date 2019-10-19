@@ -44,9 +44,9 @@ class ConverterComponent extends Component {
     });
   };
 
-  FocusInput() {
-    ReactDOM.findDOMNode(this.refs.baseInput).focus();
-  }
+  // FocusInput() {
+  //   ReactDOM.findDOMNode(this.refs.baseInput).focus();
+  // }
 
   componentDidUpdate() {
     // update input values in case currencies props change
@@ -67,15 +67,15 @@ class ConverterComponent extends Component {
         }
       });
       this.CalcNewValues("baseInput");
-      setTimeout(() => {
-        this.FocusInput();
-      }, 1000);
+      // setTimeout(() => {
+      //   this.FocusInput();
+      // }, 1000);
     }
   }
 
-  componentDidMount() {
-    this.FocusInput();
-  }
+  // componentDidMount() {
+  //   this.FocusInput();
+  // }
 
   render() {
     return (

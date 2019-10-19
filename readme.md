@@ -13,14 +13,12 @@
 // animations and everything (how to have loader for each component, scroll etc react spring)
 // mobile responsive
 // perhaps include chart.js for bitcoin app, thats hot right now
-// set as base or target shouldnt appear if its already set (remove the whole component actually)
 // fix empty input error 0
 // also, if input smaller than 0 stop updating
-// while user is typing have some animation
 // handle nan
+// while user is typing have some animation
 
 // credits:
 // flat icons
-// bg images
 // api
 // icon pack for sidebar
