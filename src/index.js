@@ -4,6 +4,7 @@ import CurrencyComponent from "./CurrencyComponent/CurrencyComponent";
 import LoaderComponent from "./UI/LoaderComponent/LoaderComponent";
 import SidebarComponent from "./UI/SidebarComponent/SidebarComponent";
 import ConverterComponent from "./ConverterComponent/ConverterComponent";
+import BackToTop from "./UI/BackToTop/BackToTop";
 
 import "./styles.css";
 
@@ -35,22 +36,26 @@ class ExchangeRates extends Component {
       .catch(error => console.log(error.message));
   };
 
-  componentDidMount() {
-    this.fetchAPI(this.state.baseAPICurrency);
-  }
-
-  BaseClickHandler = newCurrency => {
-    this.fetchAPI(newCurrency);
+  scrollToTop = () => {
     document
       .querySelector(".ContentHolder")
       .scroll({ top: 0, left: 0, behavior: "smooth" });
   };
 
-  TargetClickHandler = (newCurrency, newValue) => {
+  componentDidMount() {
+    this.fetchAPI(this.state.baseAPICurrency);
+  }
+
+  BaseClickHandler = (e, newCurrency) => {
+    e.stopPropagation();
+    this.fetchAPI(newCurrency);
+    this.scrollToTop();
+  };
+
+  TargetClickHandler = (e, newCurrency, newValue) => {
+    e.stopPropagation();
     this.setState({ targetCurrency: { name: newCurrency, value: newValue } });
-    document
-      .querySelector(".ContentHolder")
-      .scroll({ top: 0, left: 0, behavior: "smooth" });
+    this.scrollToTop();
   };
 
   render() {
@@ -91,6 +96,7 @@ class ExchangeRates extends Component {
               <ul>{displayRates}</ul>
             </div>
           </div>
+          <BackToTop clicked={this.scrollToTop} />
         </div>
       );
     } else {

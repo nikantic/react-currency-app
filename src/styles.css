@@ -21,13 +21,13 @@ body {
   width: 500px;
   height: 100%;
   display: inline-block;
-  background-color: #eaeaea;
+  background-color: #1d1d1d;
 }
 
 .ContentHolder {
   width: 100%;
   overflow-y: scroll;
-  background: #f9f9f9;
+  background: #edf2f6;
 }
 
 .CurrencyComponent {
@@ -127,6 +127,7 @@ body {
 .CurrencyComponentRightSide small {
   opacity: 1;
   transition: 0.2s;
+  color: #686f7f;
 }
 
 .SpinnerHolder {
@@ -179,8 +180,9 @@ body {
   display: inline-block;
   margin-right: 70px;
   margin: 50px;
-  border-radius: 5px;
+  border-radius: 25px;
   box-sizing: border-box;
+  box-shadow: 1px 3px 18px 0px #ececec;
   padding: 26px;
 }
 
@@ -237,10 +239,6 @@ body {
   top: 26px;
 }
 
-.ExchangeArrowSVG {
-  width: 30px;
-}
-
 .ExchangeRatesContent h2 {
   margin-left: 40px;
   margin-top: 39px;
@@ -253,4 +251,41 @@ body {
 
 ul {
   padding-left: 30px;
+}
+
+.BackToTop {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  bottom: 20px;
+  right: 40px;
+  background: #fff;
+  padding: 10px;
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9px;
+  box-shadow: 1px 3px 18px 0px #ececec;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+  transform: translateY(50px);
+}
+
+.BackToTop.Visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: 0.3s;
+  pointer-events: all;
+}
+
+.BackToTop svg {
+  width: 20px;
+  height: 20px;
+}
+
+.BackToTop svg path {
+  fill: #1e201d;
 }

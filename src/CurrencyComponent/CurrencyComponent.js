@@ -20,14 +20,18 @@ class CurrencyComponent extends Component {
 
   render() {
     return (
-      <li className="CurrencyComponent" key={this.props.value}>
+      <li
+        className="CurrencyComponent"
+        key={this.props.value}
+        onClick={e => this.props.clickedBase(e, this.props.name)}
+      >
         <div className="CurrencyComponentLeftSide">
           <img alt={this.state.fullName} src={this.state.imgLoc} />
         </div>
         <div className="CurrencyComponentRightSide">
           <div className="CurrencyComponentRightSideTop">
             <strong>{this.props.name}</strong>
-            <span onClick={e => this.props.clickedBase(this.props.name)}>
+            <span onClick={e => this.props.clickedBase(e, this.props.name)}>
               (Set as base)
             </span>
           </div>
@@ -39,7 +43,7 @@ class CurrencyComponent extends Component {
           <span
             className="CurrencyComponentRightSideButton"
             onClick={e =>
-              this.props.clickedTarget(this.props.name, this.props.value)
+              this.props.clickedTarget(e, this.props.name, this.props.value)
             }
           >
             Set as target

@@ -80,7 +80,7 @@ class ConverterComponent extends Component {
   render() {
     return (
       <div className="ConverterComponent">
-        <h1>Converter From / To in real time</h1>
+        <h1>Dashboard</h1>
         <div className="ConverterComponentCurrency">
           <div className="ConverterComponentCurrencyTopInfo">
             <img
