@@ -289,3 +289,39 @@ ul {
 .BackToTop svg path {
   fill: #1e201d;
 }
+
+.Logo {
+  display: flex;
+  align-items: center;
+  padding-left: 23px;
+  padding-top: 20px;
+  padding-bottom: 23px;
+  background: #252525;
+}
+
+.Logo svg {
+  fill: #fff;
+  width: 70px;
+}
+
+.Logo svg path:first-child {
+  fill: #43ffce;
+}
+
+.Logo span {
+  color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  font-size: 24px;
+  margin-top: 17px;
+  margin-left: 10px;
+}
+
+.Logo span p {
+  display: block;
+  font-size: 12px;
+  color: #ececec;
+  font-family: monospace;
+  margin-left: 5px;
+  margin-top: 5px;
+}

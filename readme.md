@@ -10,7 +10,6 @@
 
 // == FEATURES
 // perhaps include chart.js for bitcoin app, thats hot right now
-// back to top
 // top menu
 // recent transactions
 // search
