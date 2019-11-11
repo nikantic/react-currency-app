@@ -302,10 +302,19 @@ ul {
 .Logo svg {
   fill: #fff;
   width: 70px;
+  overflow: visible;
 }
 
 .Logo svg path:first-child {
   fill: #43ffce;
+  transform-origin: 31% 25%;
+  animation: animateLogo 1s;
+}
+
+@keyframes animateLogo {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .Logo span {
@@ -324,4 +333,35 @@ ul {
   font-family: monospace;
   margin-left: 5px;
   margin-top: 5px;
+}
+
+.SidebarItemsHolder {
+  margin-top: 26px;
+}
+
+.SidebarItem {
+  padding: 7px 42px;
+}
+
+.SidebarItem a {
+  color: #fff;
+  border-radius: 6px;
+  padding: 13px;
+  text-decoration: none;
+  font-size: 19px;
+  display: block;
+  transition: 0.1s;
+}
+
+.SidebarItem a:hover,
+.SidebarItem.Active a {
+  background: #252525;
+}
+
+.SidebarSeparator {
+  background-color: #151515;
+  width: 100%;
+  height: 1px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
