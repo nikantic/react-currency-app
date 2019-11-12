@@ -2,7 +2,7 @@
 
 // optimization - json save and error handling (404 and for components) - will we have a router?
 
-// sidebar component (menu, logo, buttons (kudos, send feedback), links)
+(kudos button)
 // fix empty input error 0
 // also, if input smaller than 0 stop updating
 // handle nan

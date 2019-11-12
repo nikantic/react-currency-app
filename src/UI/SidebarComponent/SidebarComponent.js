@@ -8,12 +8,17 @@ const SidebarComponent = () => {
     <div className="SidebarHolder">
       <Logo />
       <div className="SidebarItemsHolder">
-        <SidebarItem name="Home" location="/" active />
-        <SidebarItem name="Transactions" location="/charts" />
-        <SidebarItem name="Charts" location="/charts" />
+        <SidebarItem name="home" label="Home" location="/" active />
+        <SidebarItem
+          name="trans"
+          label="My Transactions"
+          location="/transactions"
+        />
+        <SidebarItem name="charts" label="Charts" location="/charts" />
         <SidebarSeparator />
-        <SidebarItem name="Settings" location="/settings" />
-        <SidebarItem name="About" location="/about" />
+        <SidebarItem name="settings" label="Settings" location="/settings" />
+        <SidebarItem name="about" label="About" location="/about" />
+        <SidebarItem name="contact" label="Contact" location="/about" />
       </div>
     </div>
   );
