@@ -32,6 +32,7 @@ class ExchangeRates extends Component {
             value: result["rates"][this.state.targetCurrency.name]
           }
         }));
+        this.animateCurrencyComponentsIn();
       })
       .catch(error => console.log(error.message));
   };
@@ -44,12 +45,38 @@ class ExchangeRates extends Component {
 
   componentDidMount() {
     this.fetchAPI(this.state.baseAPICurrency);
+    this.animateCurrencyComponentsIn();
   }
+
+  animateCurrencyComponentsIn = () => {
+    setTimeout(() => {
+      this.refs.CurrencyComponentHolder.querySelectorAll(
+        ".CurrencyComponent"
+      ).forEach((item, index) => {
+        item.style.transitionDelay = index * 0.01 + "s";
+        item.classList.add("Appear");
+      });
+    }, 100);
+  };
+
+  animateCurrencyComponentsOut = () => {
+    this.refs.CurrencyComponentHolder.querySelectorAll(
+      ".CurrencyComponent"
+    ).forEach(item => {
+      item.style.transitionDelay = "0s";
+      item.classList.remove("Appear");
+    });
+  };
 
   BaseClickHandler = (e, newCurrency) => {
     e.stopPropagation();
-    this.fetchAPI(newCurrency);
-    this.scrollToTop();
+    this.animateCurrencyComponentsOut();
+    setTimeout(() => {
+      this.scrollToTop();
+    }, 100);
+    setTimeout(() => {
+      this.fetchAPI(newCurrency);
+    }, 300);
   };
 
   TargetClickHandler = (e, newCurrency, newValue) => {
@@ -93,7 +120,7 @@ class ExchangeRates extends Component {
             <div className="ExchangeRatesContent">
               <h2>Exchange Rates</h2>
               <h4>Date: {data["date"]}</h4>
-              <ul>{displayRates}</ul>
+              <ul ref="CurrencyComponentHolder">{displayRates}</ul>
             </div>
           </div>
           <BackToTop clicked={this.scrollToTop} />

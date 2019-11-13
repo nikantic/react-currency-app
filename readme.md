@@ -1,7 +1,5 @@
 #Todo - react-currency-app
 
-// optimization - json save and error handling (404 and for components) - will we have a router?
-
 (kudos button)
 // fix empty input error 0
 // also, if input smaller than 0 stop updating
@@ -9,10 +7,10 @@
 // mobile responsive - transition to top of the page when clicking
 
 // == FEATURES
+// optimization - json save and error handling (404 and for components) - will we have a router?
 // perhaps include chart.js for bitcoin app, thats hot right now
 // top menu
 // recent transactions
-// search
 
 // == VISUAL
 // while user is typing have some animation
