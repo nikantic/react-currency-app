@@ -176,6 +176,7 @@ body {
   box-sizing: border-box;
   display: block;
   background: #fff;
+  z-index: 1;
 }
 
 .ConverterComponent > h1 {
@@ -197,13 +198,40 @@ body {
 }
 
 .ConverterComponentCurrency {
+  position: relative;
   display: inline-block;
   margin-right: 70px;
   margin: 50px;
   border-radius: 25px;
+  background: #fff;
   box-sizing: border-box;
   box-shadow: 1px 3px 18px 0px #ececec;
   padding: 26px;
+}
+
+.ConverterComponentCurrency:after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 18px;
+  width: 90%;
+  border-radius: 25px;
+  height: 92%;
+  z-index: -1;
+  box-shadow: 3px 11px 18px 5px #6db5ff;
+  transform: scaleX(0.8);
+  opacity: 0;
+  transition: transform 0.1s 0.5s, opacity.5s;
+}
+
+.ConverterComponentCurrency.ConverterComponentCurrencyTarget:after {
+  box-shadow: 3px 11px 18px 5px #ff6d88;
+}
+
+.ConverterComponentCurrency.Typing:after {
+  transition: transform 0.5s, opacity 0.3s;
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .ConverterComponentCurrencyTopInfo {

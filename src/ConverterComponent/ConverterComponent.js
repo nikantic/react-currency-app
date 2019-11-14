@@ -38,6 +38,21 @@ class ConverterComponent extends Component {
   };
 
   ChangeHandler = event => {
+    if (event.target.name !== "baseInput") {
+      this.refs.ConverterComponentBase.classList.add("Typing");
+      setTimeout(() => {
+        if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
+          this.refs.ConverterComponentBase.classList.remove("Typing");
+        }
+      }, 700);
+    } else {
+      this.refs.ConverterComponentTarget.classList.add("Typing");
+      setTimeout(() => {
+        if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
+          this.refs.ConverterComponentTarget.classList.remove("Typing");
+        }
+      }, 700);
+    }
     const inputName = event.target.name;
     this.setState({ [inputName]: parseFloat(event.target.value) }, () => {
       this.CalcNewValues(inputName);
@@ -81,7 +96,10 @@ class ConverterComponent extends Component {
     return (
       <div className="ConverterComponent">
         <h1>Dashboard</h1>
-        <div className="ConverterComponentCurrency">
+        <div
+          className="ConverterComponentCurrency ConverterComponentCurrencyBase"
+          ref="ConverterComponentBase"
+        >
           <div className="ConverterComponentCurrencyTopInfo">
             <img
               alt={this.props.baseCurrency}
@@ -104,7 +122,10 @@ class ConverterComponent extends Component {
           </div>
         </div>
         <ExchangeArrowSVG />
-        <div className="ConverterComponentCurrency">
+        <div
+          className="ConverterComponentCurrency ConverterComponentCurrencyTarget"
+          ref="ConverterComponentTarget"
+        >
           <div className="ConverterComponentCurrencyTopInfo">
             <img
               alt={this.props.targetCurrency["name"]}

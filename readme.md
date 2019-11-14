@@ -7,10 +7,10 @@
 // mobile responsive - transition to top of the page when clicking
 
 // == FEATURES
-// optimization - json save and error handling (404 and for components) - will we have a router?
-// perhaps include chart.js for bitcoin app, thats hot right now
 // top menu
+// perhaps include chart.js for bitcoin app, thats hot right now
 // recent transactions
+// will we have a router? - 404 and error handling
 
 // == VISUAL
 // while user is typing have some animation
