@@ -54,7 +54,7 @@ class ConverterComponent extends Component {
       }, 700);
     }
     const inputName = event.target.name;
-    this.setState({ [inputName]: parseFloat(event.target.value) }, () => {
+    this.setState({ [inputName]: event.target.value }, () => {
       this.CalcNewValues(inputName);
     });
   };

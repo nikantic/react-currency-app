@@ -3,7 +3,6 @@
 (kudos button)
 // fix empty input error 0
 // also, if input smaller than 0 stop updating
-// handle nan
 // mobile responsive - transition to top of the page when clicking
 
 // == FEATURES
