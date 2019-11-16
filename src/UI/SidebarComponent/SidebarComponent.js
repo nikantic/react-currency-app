@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../Logo/Logo";
 import SidebarItem from "./SidebarItem/SidebarItem";
 import SidebarSeparator from "./SidebarSeparator/SidebarSeparator";
+import NotificationComponent from "../NotificationComponent/NotificationComponent";
 
 const SidebarComponent = () => {
   return (
@@ -19,7 +20,8 @@ const SidebarComponent = () => {
         <SidebarItem name="settings" label="Settings" location="/settings" />
         <SidebarItem name="about" label="About" location="/about" />
         <SidebarItem name="contact" label="Contact" location="/about" />
-        <p class="SidebarSmallText">
+        <NotificationComponent />
+        <p className="SidebarSmallText">
           Made with{" "}
           <span role="img" aria-label="heart">
             ❤️
