@@ -38,25 +38,27 @@ class ConverterComponent extends Component {
   };
 
   ChangeHandler = event => {
-    if (event.target.name !== "baseInput") {
-      this.refs.ConverterComponentBase.classList.add("Typing");
-      setTimeout(() => {
-        if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
-          this.refs.ConverterComponentBase.classList.remove("Typing");
-        }
-      }, 700);
-    } else {
-      this.refs.ConverterComponentTarget.classList.add("Typing");
-      setTimeout(() => {
-        if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
-          this.refs.ConverterComponentTarget.classList.remove("Typing");
-        }
-      }, 700);
+    if (event.target.value >= 0) {
+      if (event.target.name !== "baseInput") {
+        this.refs.ConverterComponentBase.classList.add("Typing");
+        setTimeout(() => {
+          if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
+            this.refs.ConverterComponentBase.classList.remove("Typing");
+          }
+        }, 700);
+      } else {
+        this.refs.ConverterComponentTarget.classList.add("Typing");
+        setTimeout(() => {
+          if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
+            this.refs.ConverterComponentTarget.classList.remove("Typing");
+          }
+        }, 700);
+      }
+      const inputName = event.target.name;
+      this.setState({ [inputName]: event.target.value }, () => {
+        this.CalcNewValues(inputName);
+      });
     }
-    const inputName = event.target.name;
-    this.setState({ [inputName]: event.target.value }, () => {
-      this.CalcNewValues(inputName);
-    });
   };
 
   // FocusInput() {

@@ -19,6 +19,13 @@ const SidebarComponent = () => {
         <SidebarItem name="settings" label="Settings" location="/settings" />
         <SidebarItem name="about" label="About" location="/about" />
         <SidebarItem name="contact" label="Contact" location="/about" />
+        <p class="SidebarSmallText">
+          Made with{" "}
+          <span role="img" aria-label="heart">
+            ❤️
+          </span>{" "}
+          by Nikola Antic
+        </p>
       </div>
     </div>
   );

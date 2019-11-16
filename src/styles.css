@@ -356,7 +356,7 @@ ul {
 
 .Logo svg path:first-child {
   fill: #43ffce;
-  transform-origin: 33% 27%;
+  transform-origin: 32% 25%;
   animation: animateLogo 1s;
   transition: 0.5s;
 }
@@ -436,4 +436,13 @@ ul {
 .SidebarItem .SidebarItemLabel {
   margin-left: 15px;
   margin-top: 5px;
+}
+
+.SidebarSmallText {
+  position: absolute;
+  bottom: 20px;
+  left: 52px;
+  font-size: 12px;
+  color: #ececec;
+  font-family: monospace;
 }
