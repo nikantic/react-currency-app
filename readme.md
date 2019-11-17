@@ -10,7 +10,7 @@
 // while user is typing have some animation
 // mobile responsive - transition to top of the page when clicking
 // design - dont waste time here, custom font, colors
-// animations and everything (how to have loader for each component, scroll etc react spring)
+// animations and everything (how to have loader for each component
 // cool loader - calculating rates
 
 // credits:

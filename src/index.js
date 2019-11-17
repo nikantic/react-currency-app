@@ -69,6 +69,9 @@ class ExchangeRates extends Component {
   };
 
   BaseClickHandler = (e, newCurrency) => {
+    this.refs.ConverterComponent.refs.ConverterComponentBase.classList.add(
+      "Updating"
+    );
     e.stopPropagation();
     this.animateCurrencyComponentsOut();
     setTimeout(() => {
@@ -114,6 +117,7 @@ class ExchangeRates extends Component {
           <SidebarComponent />
           <div className="ContentHolder">
             <ConverterComponent
+              ref="ConverterComponent"
               baseCurrency={data["base"]}
               targetCurrency={this.state.targetCurrency}
             />

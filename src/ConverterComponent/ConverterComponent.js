@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import findCurrencyData from "../currency_data";
 import ExchangeArrowSVG from "../UI/ExchangeArrowSVG/ExchangeArrowSVG";
@@ -61,11 +60,33 @@ class ConverterComponent extends Component {
     }
   };
 
-  // FocusInput() {
-  //   ReactDOM.findDOMNode(this.refs.baseInput).focus();
-  // }
-
   componentDidUpdate() {
+    // base currency update
+    if (this.state.baseCur["name"] !== this.props.baseCurrency) {
+      setTimeout(() => {
+        if (this.refs.ConverterComponentBase.classList.contains("Updating")) {
+          this.refs.ConverterComponentBase.classList.remove("Updating");
+        }
+      }, 200);
+
+      this.refs.ConverterComponentTarget.classList.add("Typing");
+      setTimeout(() => {
+        if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
+          this.refs.ConverterComponentTarget.classList.remove("Typing");
+        }
+      }, 700);
+    }
+
+    // target currency update
+    if (this.state.targetCur["name"] !== this.props.targetCurrency["name"]) {
+      this.refs.ConverterComponentTarget.classList.add("Typing");
+      setTimeout(() => {
+        if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
+          this.refs.ConverterComponentTarget.classList.remove("Typing");
+        }
+      }, 700);
+    }
+
     // update input values in case currencies props change
     if (
       this.state.baseCur["name"] !== this.props.baseCurrency ||
@@ -84,15 +105,8 @@ class ConverterComponent extends Component {
         }
       });
       this.CalcNewValues("baseInput");
-      // setTimeout(() => {
-      //   this.FocusInput();
-      // }, 1000);
     }
   }
-
-  // componentDidMount() {
-  //   this.FocusInput();
-  // }
 
   render() {
     return (
