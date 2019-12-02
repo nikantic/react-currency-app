@@ -138,9 +138,20 @@ body {
   color: #686f7f;
 }
 
+.CurrencyComponentHolder {
+  position: relative;
+}
+
+.CurrencyComponentHolderLoader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
 .SpinnerHolder {
-  width: 100vw;
-  height: 100vh;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -237,12 +248,13 @@ body {
 .ConverterComponentCurrencyBase img {
   opacity: 1;
   transform: scale(1);
-  transition: 0.5s cubic-bezier(0.25, 0.1, 0.15, 0.98);
+  transition: 0.5s cubic-bezier(0.06, 0.76, 0.15, 0.98);
 }
 
 .ConverterComponentCurrencyBase.Updating img {
   opacity: 0;
-  transform: scale(0.5);
+  transform: scale(0.8);
+  transition: 0s;
 }
 
 .ConverterComponentCurrencyTopInfo {
@@ -296,6 +308,12 @@ body {
   font-size: 24px;
   right: 11px;
   top: 26px;
+}
+
+.ConverterComponentCurrencyLoader {
+  position: absolute;
+  width: 106px;
+  height: 106px;
 }
 
 .ExchangeRatesContent h2 {
@@ -441,7 +459,7 @@ ul {
 .SidebarItem .SidebarItemSVGHolder svg {
   width: 30px;
   height: 30px;
-  fill: #fff;
+  fill: #d0d0d0;
 }
 
 .SidebarItem .SidebarItemLabel {

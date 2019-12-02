@@ -1,17 +1,20 @@
 #Todo - react-currency-app
 
 // == FEATURES
-// router - 404 and error handling
+// search
 // top menu - notifications
-// perhaps include chart.js
 // recent transactions
+// router - 404 and error handling
+// chart.js
+
+// FINAL polish
+
+- replace some svg sidebar icons for thinner ones
+- documentation, description (react SPA)
 
 // == VISUAL
-// while user is typing have some animation
-// mobile responsive - transition to top of the page when clicking
-// design - dont waste time here, custom font, colors
-// animations and everything (how to have loader for each component
-// cool loader - calculating rates
+// mobile responsive - transition to top of the page when clicking?
+// design - dont waste time here - custom font, colors
 
 // credits:
 // flat icons

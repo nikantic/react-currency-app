@@ -15,7 +15,8 @@ class ExchangeRates extends Component {
       name: "USD",
       value: 0
     },
-    data: []
+    data: [],
+    loading: false
   };
 
   fetchAPI = newCur => {
@@ -33,6 +34,7 @@ class ExchangeRates extends Component {
           }
         }));
         this.animateCurrencyComponentsIn();
+        this.setState({ loading: false });
       })
       .catch(error => console.log(error.message));
   };
@@ -69,6 +71,7 @@ class ExchangeRates extends Component {
   };
 
   BaseClickHandler = (e, newCurrency) => {
+    this.setState({ loading: true });
     this.refs.ConverterComponent.refs.ConverterComponentBase.classList.add(
       "Updating"
     );
@@ -120,11 +123,22 @@ class ExchangeRates extends Component {
               ref="ConverterComponent"
               baseCurrency={data["base"]}
               targetCurrency={this.state.targetCurrency}
+              loading={this.state.loading}
             />
             <div className="ExchangeRatesContent">
               <h2>Exchange Rates</h2>
               <h4>Date: {data["date"]}</h4>
-              <ul ref="CurrencyComponentHolder">{displayRates}</ul>
+              <ul
+                className="CurrencyComponentHolder"
+                ref="CurrencyComponentHolder"
+              >
+                {this.state.loading ? (
+                  <div className="CurrencyComponentHolderLoader">
+                    <LoaderComponent />
+                  </div>
+                ) : null}
+                {displayRates}
+              </ul>
             </div>
           </div>
           <BackToTop clicked={this.scrollToTop} />

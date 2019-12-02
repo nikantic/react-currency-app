@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import findCurrencyData from "../currency_data";
 import ExchangeArrowSVG from "../UI/ExchangeArrowSVG/ExchangeArrowSVG";
+import LoaderComponent from "../UI/LoaderComponent/LoaderComponent";
 
 class ConverterComponent extends Component {
   state = {
@@ -66,6 +67,7 @@ class ConverterComponent extends Component {
       setTimeout(() => {
         if (this.refs.ConverterComponentBase.classList.contains("Updating")) {
           this.refs.ConverterComponentBase.classList.remove("Updating");
+          this.setState({ loading: false });
         }
       }, 200);
 
@@ -121,6 +123,11 @@ class ConverterComponent extends Component {
               alt={this.props.baseCurrency}
               src={this.state.baseCur["img"]}
             />
+            {this.props.loading ? (
+              <div className="ConverterComponentCurrencyLoader">
+                <LoaderComponent />
+              </div>
+            ) : null}
             <div className="ConverterComponentCurrencyTopInfoContent">
               <h2>{this.props.baseCurrency}</h2>
               <h4>{this.state.baseCur["other"]["name"]}</h4>
