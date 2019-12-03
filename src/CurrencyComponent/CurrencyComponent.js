@@ -21,7 +21,13 @@ class CurrencyComponent extends Component {
   render() {
     return (
       <li
-        className="CurrencyComponent"
+        data-key={this.props.name}
+        className={
+          "CurrencyComponent " +
+          (this.props.baseCur === this.props.name
+            ? "CurrencyComponentIsBase"
+            : "")
+        }
         key={this.props.value}
         onClick={e => this.props.clickedBase(e, this.props.name)}
       >

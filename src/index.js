@@ -48,15 +48,58 @@ class ExchangeRates extends Component {
   componentDidMount() {
     this.fetchAPI(this.state.baseAPICurrency);
     this.animateCurrencyComponentsIn();
+    setTimeout(() => {
+      let myArray = this.initArray();
+      this.searchComponent("I", myArray);
+    }, 500);
   }
+
+  findSubstring = (key, array) => {
+    let results = [];
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].indexOf(key) === 0) {
+        results.push(array[i]);
+      }
+    }
+    return results;
+  };
+
+  initArray = () => {
+    let myArray = [];
+    this.refs.CurrencyComponentHolder.querySelectorAll(
+      ".CurrencyComponent"
+    ).forEach((item, index) => {
+      myArray.push(item.getAttribute("data-key"));
+    });
+    return myArray;
+  };
+
+  searchComponent = (query, arr) => {
+    let results = this.findSubstring(query, arr);
+    results.forEach(item => {
+      this.prependFoundComponent(item);
+    });
+    console.log(results);
+  };
+
+  prependFoundComponent = dataKey => {
+    this.refs.CurrencyComponentHolder.querySelectorAll(
+      ".CurrencyComponent"
+    ).forEach((item, index) => {
+      if (item.getAttribute("data-key") === dataKey) {
+        this.refs.CurrencyComponentHolder.prepend(item);
+      }
+    });
+  };
 
   animateCurrencyComponentsIn = () => {
     setTimeout(() => {
       this.refs.CurrencyComponentHolder.querySelectorAll(
         ".CurrencyComponent"
       ).forEach((item, index) => {
-        item.style.transitionDelay = index * 0.01 + "s";
-        item.classList.add("Appear");
+        setTimeout(() => {
+          item.classList.add("Appear");
+        }, index * 20);
       });
     }, 100);
   };
