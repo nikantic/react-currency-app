@@ -5,6 +5,7 @@ import LoaderComponent from "./UI/LoaderComponent/LoaderComponent";
 import SidebarComponent from "./UI/SidebarComponent/SidebarComponent";
 import ConverterComponent from "./ConverterComponent/ConverterComponent";
 import BackToTop from "./UI/BackToTop/BackToTop";
+import SearchComponent from "./SearchComponent/SearchComponent";
 
 import "./styles.css";
 
@@ -48,49 +49,7 @@ class ExchangeRates extends Component {
   componentDidMount() {
     this.fetchAPI(this.state.baseAPICurrency);
     this.animateCurrencyComponentsIn();
-    setTimeout(() => {
-      let myArray = this.initArray();
-      this.searchComponent("I", myArray);
-    }, 500);
   }
-
-  findSubstring = (key, array) => {
-    let results = [];
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].indexOf(key) === 0) {
-        results.push(array[i]);
-      }
-    }
-    return results;
-  };
-
-  initArray = () => {
-    let myArray = [];
-    this.refs.CurrencyComponentHolder.querySelectorAll(
-      ".CurrencyComponent"
-    ).forEach((item, index) => {
-      myArray.push(item.getAttribute("data-key"));
-    });
-    return myArray;
-  };
-
-  searchComponent = (query, arr) => {
-    let results = this.findSubstring(query, arr);
-    results.forEach(item => {
-      this.prependFoundComponent(item);
-    });
-    console.log(results);
-  };
-
-  prependFoundComponent = dataKey => {
-    this.refs.CurrencyComponentHolder.querySelectorAll(
-      ".CurrencyComponent"
-    ).forEach((item, index) => {
-      if (item.getAttribute("data-key") === dataKey) {
-        this.refs.CurrencyComponentHolder.prepend(item);
-      }
-    });
-  };
 
   animateCurrencyComponentsIn = () => {
     setTimeout(() => {
@@ -157,6 +116,14 @@ class ExchangeRates extends Component {
         return arr;
       })();
 
+      const componentArray = (() => {
+        let arr = [];
+        for (let key in rates) {
+          arr.push(key);
+        }
+        return arr;
+      })();
+
       // MAIN RENDER
       return (
         <div>
@@ -171,6 +138,7 @@ class ExchangeRates extends Component {
             <div className="ExchangeRatesContent">
               <h2>Exchange Rates</h2>
               <h4>Date: {data["date"]}</h4>
+              <SearchComponent componentArray={componentArray} componentHolder={this.refs.CurrencyComponentHolder}/>
               <ul
                 className="CurrencyComponentHolder"
                 ref="CurrencyComponentHolder"
