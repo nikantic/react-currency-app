@@ -136,9 +136,15 @@ class ExchangeRates extends Component {
               loading={this.state.loading}
             />
             <div className="ExchangeRatesContent">
-              <h2>Exchange Rates</h2>
-              <h4>Date: {data["date"]}</h4>
-              <SearchComponent componentArray={componentArray} componentHolder={this.refs.CurrencyComponentHolder}/>
+            <div className="ContentTopHolder">
+              <div>
+                <h2>Exchange Rates</h2>
+                <h4>Date: {data["date"]}</h4>
+              </div>
+              <div>
+                <SearchComponent componentArray={componentArray} componentHolder={this.refs.CurrencyComponentHolder}/>
+              </div>
+            </div>
               <ul
                 className="CurrencyComponentHolder"
                 ref="CurrencyComponentHolder"

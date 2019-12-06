@@ -322,16 +322,6 @@ body {
   height: 106px;
 }
 
-.ExchangeRatesContent h2 {
-  margin-left: 40px;
-  margin-top: 39px;
-}
-
-.ExchangeRatesContent h4 {
-  margin-left: 40px;
-  margin-top: 20px;
-}
-
 ul {
   padding-left: 30px;
 }
@@ -570,4 +560,59 @@ ul {
   50% {
     transform: scale(0.7);
   }
+}
+
+.SearchComponent {
+  position: relative;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+}
+
+.SearchComponent input {
+  position: relative;
+  max-width: 281px;
+  font-size: 23px;
+  border: none;
+  margin: 0 auto;
+  font-weight: 300;
+  border-radius: 2px;
+  padding: 13px;
+  padding-left: 2px;
+  margin-left: 0;
+  background: transparent;
+  border-bottom: 2px solid #dadada;
+  transition: .2s;
+}
+
+.SearchComponent input:focus {
+  border-bottom: 2px solid #afafaf;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.SearchComponent span {
+  position: absolute;
+  right: 11px;
+}
+
+.SearchComponent svg {
+  width: 25px;
+  height: 25px;
+  fill: #3c3c3c;
+}
+
+.ContentTopHolder {
+  position: relative;
+  padding: 33px 50px 10px 50px;
+  display: flex;
+  align-items: center;
+}
+
+.ContentTopHolder > div {
+  position: relative;
+  display: inline-block;
+  width: 50%;
 }
