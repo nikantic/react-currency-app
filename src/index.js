@@ -6,6 +6,7 @@ import SidebarComponent from "./UI/SidebarComponent/SidebarComponent";
 import ConverterComponent from "./ConverterComponent/ConverterComponent";
 import BackToTop from "./UI/BackToTop/BackToTop";
 import SearchComponent from "./SearchComponent/SearchComponent";
+import Header from "./UI/Header/Header";
 
 import "./styles.css";
 
@@ -129,6 +130,7 @@ class ExchangeRates extends Component {
         <div>
           <SidebarComponent />
           <div className="ContentHolder">
+            <Header />
             <ConverterComponent
               ref="ConverterComponent"
               baseCurrency={data["base"]}

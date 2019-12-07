@@ -71,10 +71,10 @@ class ConverterComponent extends Component {
         }
       }, 200);
 
-      this.refs.ConverterComponentTarget.classList.add("Typing");
+      this.refs.ConverterComponentBase.classList.add("Typing");
       setTimeout(() => {
-        if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
-          this.refs.ConverterComponentTarget.classList.remove("Typing");
+        if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
+          this.refs.ConverterComponentBase.classList.remove("Typing");
         }
       }, 700);
     }
@@ -113,7 +113,6 @@ class ConverterComponent extends Component {
   render() {
     return (
       <div className="ConverterComponent">
-        <h1>Dashboard</h1>
         <div
           className="ConverterComponentCurrency ConverterComponentCurrencyBase"
           ref="ConverterComponentBase"

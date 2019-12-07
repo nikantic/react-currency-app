@@ -1,7 +1,6 @@
 #Todo - react-currency-app
 
 // == FEATURES
-// search
 // top menu - notifications
 // recent transactions
 // router - 404 and error handling
