@@ -227,6 +227,12 @@ body {
   box-shadow: 3px 11px 18px 5px #ff6d88;
 }
 
+.ConverterComponentCurrency.Typing:after {
+  transition: transform 0.5s, opacity 0.3s;
+  opacity: 1;
+  transform: scaleX(1);
+}
+
 .ConverterComponentCurrencyBase img {
   opacity: 1;
   transform: scale(1);
@@ -477,7 +483,7 @@ ul {
 .NotificationIcon svg {
   width: 30px;
   height: 30px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .NotificationComponentInnerHolder {
@@ -494,7 +500,7 @@ ul {
   border: 1px solid #efefef;
   opacity: 0;
   transform: translateY(5px);
-  transition: .2s;
+  transition: 0.2s;
   pointer-events: none;
 }
 
@@ -507,7 +513,7 @@ ul {
   border-radius: 3px 0 3px 3px;
   opacity: 0;
   transform: translateY(10px);
-  animation: notification-appear .3s cubic-bezier(0.04, 0.68, 0.25, 1) forwards;
+  animation: notification-appear 0.3s cubic-bezier(0.04, 0.68, 0.25, 1) forwards;
 }
 
 .NotificationItem a {
@@ -558,7 +564,7 @@ ul {
   margin-left: 0;
   background: transparent;
   border-bottom: 2px solid #dadada;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .SearchComponent input:focus {
@@ -595,7 +601,8 @@ ul {
   position: relative;
   display: flex;
   align-items: center;
-  background: linear-gradient(90deg, #f9f9f9 20px, transparent 1%) center, linear-gradient(#f9f9f9 20px, transparent 1%) center, #e6e6e6;
+  background: linear-gradient(90deg, #f9f9f9 20px, transparent 1%) center,
+    linear-gradient(#f9f9f9 20px, transparent 1%) center, #e6e6e6;
   background-size: 22px 22px;
 }
 
