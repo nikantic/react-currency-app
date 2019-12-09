@@ -7,6 +7,7 @@ import ConverterComponent from "./ConverterComponent/ConverterComponent";
 import BackToTop from "./UI/BackToTop/BackToTop";
 import SearchComponent from "./SearchComponent/SearchComponent";
 import Header from "./UI/Header/Header";
+import NotificationComponent from "./UI/NotificationComponent/NotificationComponent";
 
 import "./styles.css";
 
@@ -18,7 +19,18 @@ class ExchangeRates extends Component {
       value: 0
     },
     data: [],
-    loading: false
+    loading: false,
+    notifications: []
+  };
+
+  AddNewNotification = notification => {
+    this.setState({
+      notifications: [notification, ...this.state.notifications]
+    });
+  };
+
+  ClearNotifications = () => {
+    this.setState({ notifications: [] });
   };
 
   fetchAPI = newCur => {
@@ -130,23 +142,33 @@ class ExchangeRates extends Component {
         <div>
           <SidebarComponent />
           <div className="ContentHolder">
-            <Header />
+            <Header>
+              <h1>Dashboard</h1>
+              <NotificationComponent
+                notifications={this.state.notifications}
+                clearNotifications={this.ClearNotifications.bind(this)}
+              />
+            </Header>
             <ConverterComponent
               ref="ConverterComponent"
               baseCurrency={data["base"]}
               targetCurrency={this.state.targetCurrency}
               loading={this.state.loading}
+              addNewNotification={this.AddNewNotification}
             />
             <div className="ExchangeRatesContent">
-            <div className="ContentTopHolder">
-              <div>
-                <h2>Exchange Rates</h2>
-                <h4>Date: {data["date"]}</h4>
+              <div className="ContentTopHolder">
+                <div>
+                  <h2>Exchange Rates</h2>
+                  <h4>Date: {data["date"]}</h4>
+                </div>
+                <div>
+                  <SearchComponent
+                    componentArray={componentArray}
+                    componentHolder={this.refs.CurrencyComponentHolder}
+                  />
+                </div>
               </div>
-              <div>
-                <SearchComponent componentArray={componentArray} componentHolder={this.refs.CurrencyComponentHolder}/>
-              </div>
-            </div>
               <ul
                 className="CurrencyComponentHolder"
                 ref="CurrencyComponentHolder"

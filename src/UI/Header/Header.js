@@ -1,13 +1,7 @@
-import React from 'react';
-import NotificationComponent from "../NotificationComponent/NotificationComponent";
+import React from "react";
 
-const Header = () => {
-  return(
-    <div className="Header">
-      <h1>Dashboard</h1>
-      <NotificationComponent />
-    </div>
-  );
-}
+const Header = props => {
+  return <div className="Header">{props.children}</div>;
+};
 
 export default Header;

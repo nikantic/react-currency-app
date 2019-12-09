@@ -21,11 +21,18 @@ class ConverterComponent extends Component {
 
   CalcNewValues = keyName => {
     if (keyName === "baseInput") {
-      this.setState({
-        targetInput: parseFloat(
-          (this.state.baseInput * this.props.targetCurrency["value"]).toFixed(2)
-        )
-      });
+      this.setState(
+        {
+          targetInput: parseFloat(
+            (this.state.baseInput * this.props.targetCurrency["value"]).toFixed(
+              2
+            )
+          )
+        },
+        () => {
+          this.props.addNewNotification(this.state.targetInput);
+        }
+      );
     } else if (keyName === "targetInput") {
       this.setState({
         baseInput: parseFloat(

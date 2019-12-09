@@ -17,6 +17,10 @@ body {
   display: flex;
 }
 
+.ExchangeRatesContent {
+  overflow-x: hidden;
+}
+
 .SidebarHolder {
   width: 500px;
   height: 100%;

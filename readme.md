@@ -1,8 +1,7 @@
 #Todo - react-currency-app
 
 // == FEATURES
-// top menu - notifications
-// recent transactions
+// recent transactions (make just icon for now in sidebar that updates, separate state array for saves)
 // router - 404 and error handling
 // chart.js
 
