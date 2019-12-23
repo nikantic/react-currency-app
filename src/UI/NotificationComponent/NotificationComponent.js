@@ -5,6 +5,8 @@ import NotificationItem from "./NotificationItem/NotificationItem";
 class NotificationComponent extends Component {
   state = {
     notifications: this.props.notifications,
+    notificationsNum: this.props.notifications.length,
+    unreadNotifications: 0,
     open: false
   };
 
@@ -12,6 +14,7 @@ class NotificationComponent extends Component {
     this.setState({ open: !this.state.open }, () => {
       if (this.state.open) {
         document.addEventListener("mousedown", this.HandleClick, false);
+        this.setState({ unreadNotifications: 0 });
       } else {
         document.removeEventListener("mousedown", this.HandleClick, false);
       }
@@ -31,6 +34,20 @@ class NotificationComponent extends Component {
       this.toggleNotificationHolder();
       // this.notificationOnboarding();
     }, 1000);
+  }
+
+  componentDidUpdate() {
+    if (this.state.notificationsNum !== this.props.notifications.length) {
+      this.setState({
+        notificationsNum: this.props.notifications.length
+      });
+      // Update unread notifications counter
+      if (this.props.notifications.length !== 0) {
+        this.setState({
+          unreadNotifications: this.state.unreadNotifications + 1
+        });
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -64,6 +81,7 @@ class NotificationComponent extends Component {
           className="NotificationIcon"
           onClick={this.toggleNotificationHolder}
         >
+          <div>{this.state.unreadNotifications}</div>
           <svg x="0px" y="0px" viewBox="0 0 512 512">
             <g>
               <g>

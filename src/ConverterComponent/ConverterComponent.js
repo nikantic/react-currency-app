@@ -19,20 +19,26 @@ class ConverterComponent extends Component {
     targetInput: this.props.targetCurrency["value"]
   };
 
+  SaveTransactionHandler = () => {
+    this.props.addNewNotification(
+      "<strong>New saved transaction:</strong> " +
+        this.state.baseInput +
+        " " +
+        this.state.baseCur.name +
+        " &#x21C6; " +
+        this.state.targetInput +
+        " " +
+        this.state.targetCur.name
+    );
+  };
+
   CalcNewValues = keyName => {
     if (keyName === "baseInput") {
-      this.setState(
-        {
-          targetInput: parseFloat(
-            (this.state.baseInput * this.props.targetCurrency["value"]).toFixed(
-              2
-            )
-          )
-        },
-        () => {
-          this.props.addNewNotification(this.state.targetInput);
-        }
-      );
+      this.setState({
+        targetInput: parseFloat(
+          (this.state.baseInput * this.props.targetCurrency["value"]).toFixed(2)
+        )
+      });
     } else if (keyName === "targetInput") {
       this.setState({
         baseInput: parseFloat(
@@ -174,6 +180,14 @@ class ConverterComponent extends Component {
             />
             <span>{this.props.targetCurrency["name"]}</span>
           </div>
+        </div>
+        <div
+          className="ConverterComponentSaveButton"
+          onClick={this.SaveTransactionHandler}
+        >
+          <svg width="512pt" height="512pt" viewBox="0 0 512 512">
+            <path d="m409.785156 278.5-153.785156 153.785156-153.785156-153.785156 28.285156-28.285156 105.5 105.5v-355.714844h40v355.714844l105.5-105.5zm102.214844 193.5h-512v40h512zm0 0" />
+          </svg>
         </div>
       </div>
     );
