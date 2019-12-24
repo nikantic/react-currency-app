@@ -30,10 +30,10 @@ class NotificationComponent extends Component {
   // };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.toggleNotificationHolder();
-      // this.notificationOnboarding();
-    }, 1000);
+    // setTimeout(() => {
+    //   this.toggleNotificationHolder();
+    //   // this.notificationOnboarding();
+    // }, 1000);
   }
 
   componentDidUpdate() {
@@ -70,6 +70,14 @@ class NotificationComponent extends Component {
       );
     });
 
+    let notificationItemsDisplayOverlay = [];
+    this.props.notifications.forEach((item, i) => {
+      notificationItemsDisplayOverlay.push(
+        <NotificationItem key={i} content={item} />
+      );
+    });
+    console.log(notificationItemsDisplayOverlay);
+
     return (
       <div
         ref="NotificationComponentHolder"
@@ -81,7 +89,14 @@ class NotificationComponent extends Component {
           className="NotificationIcon"
           onClick={this.toggleNotificationHolder}
         >
-          <div>{this.state.unreadNotifications}</div>
+          <div
+            className={
+              "NotificationIconNum " +
+              (this.state.unreadNotifications ? "Active" : "")
+            }
+          >
+            {this.state.unreadNotifications}
+          </div>
           <svg x="0px" y="0px" viewBox="0 0 512 512">
             <g>
               <g>
@@ -111,6 +126,9 @@ class NotificationComponent extends Component {
           >
             Clear All
           </div>
+        </div>
+        <div className="NotificationComponentDisplayOverlay">
+          {notificationItemsDisplayOverlay}
         </div>
       </div>
     );

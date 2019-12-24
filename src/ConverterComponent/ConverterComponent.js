@@ -30,6 +30,19 @@ class ConverterComponent extends Component {
         " " +
         this.state.targetCur.name
     );
+
+    this.refs.ConverterComponentBase.classList.add("Typing");
+    setTimeout(() => {
+      if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
+        this.refs.ConverterComponentBase.classList.remove("Typing");
+      }
+    }, 700);
+    this.refs.ConverterComponentTarget.classList.add("Typing");
+    setTimeout(() => {
+      if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
+        this.refs.ConverterComponentTarget.classList.remove("Typing");
+      }
+    }, 700);
   };
 
   CalcNewValues = keyName => {

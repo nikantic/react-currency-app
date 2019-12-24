@@ -474,6 +474,7 @@ ul {
 }
 
 .NotificationIcon {
+  position: relative;
   width: 30px;
   height: 30px;
   display: inline-block;
@@ -494,7 +495,7 @@ ul {
   position: absolute;
   right: 4px;
   top: 72px;
-  width: 300px;
+  width: 337px;
   border-radius: 5px;
   padding: 20px;
   box-sizing: border-box;
@@ -506,6 +507,9 @@ ul {
   transform: translateY(5px);
   transition: 0.2s;
   pointer-events: none;
+  overflow-y: scroll;
+  height: 520px;
+  z-index: 123;
 }
 
 .NotificationItem {
@@ -620,9 +624,12 @@ ul {
 }
 
 .ConverterComponentSaveButton {
+  position: absolute;
+  left: 68%;
+  top: 89%;
   display: inline-block;
   padding: 20px;
-  background: #f9f9f9;
+  background: #fff;
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -634,4 +641,34 @@ ul {
 .ConverterComponentSaveButton svg {
   width: 30px;
   height: 30px;
+}
+
+.NotificationIconNum {
+  background-color: #fff;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 1.5em;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  transform-origin: center;
+  transform: scale(0);
+  transition: 0.2s 0.2s;
+}
+
+.NotificationIconNum.Active {
+  transform: scale(1);
+  background-color: #ff4545;
+}
+
+.NotificationComponentDisplayOverlay {
+  position: absolute;
+  top: 60px;
+  left: -220px;
+  width: 300px;
+  z-index: 12;
 }
