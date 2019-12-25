@@ -522,6 +522,11 @@ ul {
   opacity: 0;
   transform: translateY(10px);
   animation: notification-appear 0.3s cubic-bezier(0.04, 0.68, 0.25, 1) forwards;
+  transition: 1s;
+}
+
+.NotificationItem.Disappear {
+  opacity: 0 !important;
 }
 
 .NotificationItem a {

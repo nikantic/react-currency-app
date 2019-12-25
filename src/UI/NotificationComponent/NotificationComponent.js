@@ -6,6 +6,7 @@ class NotificationComponent extends Component {
   state = {
     notifications: this.props.notifications,
     notificationsNum: this.props.notifications.length,
+    notificationsDisplay: this.props.notifications,
     unreadNotifications: 0,
     open: false
   };
@@ -41,11 +42,37 @@ class NotificationComponent extends Component {
       this.setState({
         notificationsNum: this.props.notifications.length
       });
+
       // Update unread notifications counter
       if (this.props.notifications.length !== 0) {
         this.setState({
           unreadNotifications: this.state.unreadNotifications + 1
         });
+
+        let newNotificationItem = (
+          <NotificationItem
+            key={this.state.unreadNotifications + 1}
+            content={this.props.notifications[0]}
+          />
+        );
+
+        this.setState(
+          {
+            notificationsDisplay: [
+              ...this.state.notificationsDisplay,
+              newNotificationItem
+            ]
+          },
+          () => {
+            this.state.notificationsDisplay.forEach((item, i) => {
+              setTimeout(() => {
+                let notificationArray = [...this.state.notificationsDisplay];
+                notificationArray.splice(i, 1);
+                this.setState({ notificationsDisplay: notificationArray });
+              }, (i + 1) * 10000);
+            });
+          }
+        );
       }
     }
   }
@@ -69,14 +96,6 @@ class NotificationComponent extends Component {
         <NotificationItem key={i} content={item} />
       );
     });
-
-    let notificationItemsDisplayOverlay = [];
-    this.props.notifications.forEach((item, i) => {
-      notificationItemsDisplayOverlay.push(
-        <NotificationItem key={i} content={item} />
-      );
-    });
-    console.log(notificationItemsDisplayOverlay);
 
     return (
       <div
@@ -128,7 +147,7 @@ class NotificationComponent extends Component {
           </div>
         </div>
         <div className="NotificationComponentDisplayOverlay">
-          {notificationItemsDisplayOverlay}
+          {this.state.notificationsDisplay}
         </div>
       </div>
     );
