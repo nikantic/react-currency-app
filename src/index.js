@@ -20,12 +20,19 @@ class ExchangeRates extends Component {
     },
     data: [],
     loading: false,
-    notifications: []
+    notifications: [],
+    savedTransactions: []
   };
 
   AddNewNotification = notification => {
     this.setState({
       notifications: [notification, ...this.state.notifications]
+    });
+  };
+
+  SaveTransaction = transaction => {
+    this.setState({
+      savedTransactions: [transaction, ...this.state.savedTransactions]
     });
   };
 
@@ -49,6 +56,9 @@ class ExchangeRates extends Component {
         }));
         this.animateCurrencyComponentsIn();
         this.setState({ loading: false });
+        this.AddNewNotification(
+          "<strong>New base curreny:</strong> " + this.state.baseAPICurrency
+        );
       })
       .catch(error => console.log(error.message));
   };
@@ -140,7 +150,7 @@ class ExchangeRates extends Component {
       // MAIN RENDER
       return (
         <div>
-          <SidebarComponent />
+          <SidebarComponent savedTransactions={this.state.savedTransactions} />
           <div className="ContentHolder">
             <Header>
               <h1>Dashboard</h1>
@@ -155,6 +165,7 @@ class ExchangeRates extends Component {
               targetCurrency={this.state.targetCurrency}
               loading={this.state.loading}
               addNewNotification={this.AddNewNotification}
+              saveTransaction={this.SaveTransaction}
             />
             <div className="ExchangeRatesContent">
               <div className="ContentTopHolder">

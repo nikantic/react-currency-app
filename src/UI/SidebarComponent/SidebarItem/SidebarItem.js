@@ -13,6 +13,16 @@ const SidebarItem = props => {
           />
         ) : null}
         <span className="SidebarItemLabel">{props.label}</span>
+        {props.savedTransactions ? (
+          <span
+            className={
+              "NotificationIconNum " +
+              (props.savedTransactions.length !== 0 ? "Active" : "")
+            }
+          >
+            {props.savedTransactions.length}
+          </span>
+        ) : null}
       </a>
     </div>
   );

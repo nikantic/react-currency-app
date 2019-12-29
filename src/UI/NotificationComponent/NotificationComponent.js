@@ -51,6 +51,7 @@ class NotificationComponent extends Component {
 
         let newNotificationItem = (
           <NotificationItem
+            disappear
             key={this.state.unreadNotifications + 1}
             content={this.props.notifications[0]}
           />
@@ -59,18 +60,16 @@ class NotificationComponent extends Component {
         this.setState(
           {
             notificationsDisplay: [
-              ...this.state.notificationsDisplay,
-              newNotificationItem
+              newNotificationItem,
+              ...this.state.notificationsDisplay
             ]
           },
           () => {
-            this.state.notificationsDisplay.forEach((item, i) => {
-              setTimeout(() => {
-                let notificationArray = [...this.state.notificationsDisplay];
-                notificationArray.splice(i, 1);
-                this.setState({ notificationsDisplay: notificationArray });
-              }, (i + 1) * 10000);
-            });
+            setTimeout(() => {
+              let notificationArray = [...this.state.notificationsDisplay];
+              notificationArray.splice(notificationArray.length - 1, 1);
+              this.setState({ notificationsDisplay: notificationArray });
+            }, this.state.notificationsDisplay.length * 8000);
           }
         );
       }

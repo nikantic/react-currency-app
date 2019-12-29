@@ -409,6 +409,7 @@ ul {
 }
 
 .SidebarItem a {
+  position: relative;
   display: flex;
   align-items: center;
   color: #fff;
@@ -417,6 +418,18 @@ ul {
   text-decoration: none;
   font-size: 19px;
   transition: 0.1s;
+}
+
+.SidebarItem .NotificationIconNum {
+  top: 2px;
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.SidebarItem .NotificationIconNum.Active {
+  transform: scale(1);
+  background-color: #272727;
 }
 
 .SidebarItem a:hover,
@@ -522,11 +535,11 @@ ul {
   opacity: 0;
   transform: translateY(10px);
   animation: notification-appear 0.3s cubic-bezier(0.04, 0.68, 0.25, 1) forwards;
-  transition: 1s;
 }
 
 .NotificationItem.Disappear {
-  opacity: 0 !important;
+  animation: notification-disappear 8s cubic-bezier(0.04, 0.68, 0.25, 1)
+    forwards !important;
 }
 
 .NotificationItem a {
@@ -540,6 +553,25 @@ ul {
   }
   100% {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes notification-disappear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  4% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  95% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
     transform: translateY(0);
   }
 }

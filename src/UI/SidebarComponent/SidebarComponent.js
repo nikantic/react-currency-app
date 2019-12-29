@@ -3,7 +3,7 @@ import Logo from "../Logo/Logo";
 import SidebarItem from "./SidebarItem/SidebarItem";
 import SidebarSeparator from "./SidebarSeparator/SidebarSeparator";
 
-const SidebarComponent = () => {
+const SidebarComponent = props => {
   return (
     <div className="SidebarHolder">
       <Logo />
@@ -13,6 +13,7 @@ const SidebarComponent = () => {
           name="trans"
           label="My Transactions"
           location="/transactions"
+          savedTransactions={props.savedTransactions}
         />
         <SidebarItem name="charts" label="Charts" location="/charts" />
         <SidebarSeparator />
