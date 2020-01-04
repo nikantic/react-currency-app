@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../Logo/Logo";
 import SidebarItem from "./SidebarItem/SidebarItem";
 import SidebarSeparator from "./SidebarSeparator/SidebarSeparator";
+import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 
 const SidebarComponent = props => {
   return (
@@ -9,6 +10,12 @@ const SidebarComponent = props => {
       <Logo />
       <div className="SidebarItemsHolder">
         <SidebarItem name="home" label="Home" location="/" active />
+        <div>
+          <Link to="/">Home</Link>
+        </div>
+        <div>
+          <Link to="/transactions">Convert</Link>
+        </div>
         <SidebarItem
           name="trans"
           label="My Transactions"

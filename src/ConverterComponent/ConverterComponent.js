@@ -36,18 +36,18 @@ class ConverterComponent extends Component {
         this.state.targetCur.name
     );
 
-    this.refs.ConverterComponentBase.classList.add("Typing");
-    setTimeout(() => {
-      if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
-        this.refs.ConverterComponentBase.classList.remove("Typing");
-      }
-    }, 700);
-    this.refs.ConverterComponentTarget.classList.add("Typing");
-    setTimeout(() => {
-      if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
-        this.refs.ConverterComponentTarget.classList.remove("Typing");
-      }
-    }, 700);
+    // this.refs.ConverterComponentBase.classList.add("Typing");
+    // setTimeout(() => {
+    //   if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
+    //     this.refs.ConverterComponentBase.classList.remove("Typing");
+    //   }
+    // }, 700);
+    // this.refs.ConverterComponentTarget.classList.add("Typing");
+    // setTimeout(() => {
+    //   if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
+    //     this.refs.ConverterComponentTarget.classList.remove("Typing");
+    //   }
+    // }, 700);
   };
 
   CalcNewValues = keyName => {
@@ -71,19 +71,19 @@ class ConverterComponent extends Component {
   ChangeHandler = event => {
     if (event.target.value >= 0) {
       if (event.target.name !== "baseInput") {
-        this.refs.ConverterComponentBase.classList.add("Typing");
-        setTimeout(() => {
-          if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
-            this.refs.ConverterComponentBase.classList.remove("Typing");
-          }
-        }, 700);
+        // this.refs.ConverterComponentBase.classList.add("Typing");
+        // setTimeout(() => {
+        //   if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
+        //     this.refs.ConverterComponentBase.classList.remove("Typing");
+        //   }
+        // }, 700);
       } else {
-        this.refs.ConverterComponentTarget.classList.add("Typing");
-        setTimeout(() => {
-          if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
-            this.refs.ConverterComponentTarget.classList.remove("Typing");
-          }
-        }, 700);
+        // this.refs.ConverterComponentTarget.classList.add("Typing");
+        // setTimeout(() => {
+        //   if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
+        //     this.refs.ConverterComponentTarget.classList.remove("Typing");
+        //   }
+        // }, 700);
       }
       const inputName = event.target.name;
       this.setState({ [inputName]: event.target.value }, () => {
@@ -95,30 +95,29 @@ class ConverterComponent extends Component {
   componentDidUpdate() {
     // base currency update
     if (this.state.baseCur["name"] !== this.props.baseCurrency) {
-      setTimeout(() => {
-        if (this.refs.ConverterComponentBase.classList.contains("Updating")) {
-          this.refs.ConverterComponentBase.classList.remove("Updating");
-          this.setState({ loading: false });
-        }
-      }, 200);
-
-      this.refs.ConverterComponentBase.classList.add("Typing");
-      setTimeout(() => {
-        if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
-          this.refs.ConverterComponentBase.classList.remove("Typing");
-        }
-      }, 700);
+      // setTimeout(() => {
+      //   if (this.refs.ConverterComponentBase.classList.contains("Updating")) {
+      //     this.refs.ConverterComponentBase.classList.remove("Updating");
+      //     this.setState({ loading: false });
+      //   }
+      // }, 200);
+      // this.refs.ConverterComponentBase.classList.add("Typing");
+      // setTimeout(() => {
+      //   if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
+      //     this.refs.ConverterComponentBase.classList.remove("Typing");
+      //   }
+      // }, 700);
     }
 
     // target currency update
-    if (this.state.targetCur["name"] !== this.props.targetCurrency["name"]) {
-      this.refs.ConverterComponentTarget.classList.add("Typing");
-      setTimeout(() => {
-        if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
-          this.refs.ConverterComponentTarget.classList.remove("Typing");
-        }
-      }, 700);
-    }
+    // if (this.state.targetCur["name"] !== this.props.targetCurrency["name"]) {
+    //   this.refs.ConverterComponentTarget.classList.add("Typing");
+    //   setTimeout(() => {
+    //     if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
+    //       this.refs.ConverterComponentTarget.classList.remove("Typing");
+    //     }
+    //   }, 700);
+    // }
 
     // update input values in case currencies props change
     if (
@@ -145,8 +144,10 @@ class ConverterComponent extends Component {
     return (
       <div className="ConverterComponent">
         <div
-          className="ConverterComponentCurrency ConverterComponentCurrencyBase"
-          ref="ConverterComponentBase"
+          className={
+            "ConverterComponentCurrency ConverterComponentCurrencyBase " +
+            (this.props.loading ? "Updating" : "")
+          }
         >
           <div className="ConverterComponentCurrencyTopInfo">
             <img
@@ -167,7 +168,6 @@ class ConverterComponent extends Component {
             <input
               type="number"
               name="baseInput"
-              ref="baseInput"
               value={this.state.baseInput}
               onChange={this.ChangeHandler}
             />
@@ -175,10 +175,7 @@ class ConverterComponent extends Component {
           </div>
         </div>
         <ExchangeArrowSVG />
-        <div
-          className="ConverterComponentCurrency ConverterComponentCurrencyTarget"
-          ref="ConverterComponentTarget"
-        >
+        <div className="ConverterComponentCurrency ConverterComponentCurrencyTarget">
           <div className="ConverterComponentCurrencyTopInfo">
             <img
               alt={this.props.targetCurrency["name"]}

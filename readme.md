@@ -4,6 +4,13 @@
 // router - 404 and error handling
 // chart.js
 
+//todo new
+notifications close holder on clear all
+currency item hover (show not hide cur)
+animations components dont work (in out, when changing route)
+search relays on holder class
+converter component too many refs and resets input value on save or on route change
+
 // FINAL polish
 
 - replace some svg sidebar icons for thinner ones

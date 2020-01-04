@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import CurrencyComponent from "./CurrencyComponent/CurrencyComponent";
 import LoaderComponent from "./UI/LoaderComponent/LoaderComponent";
 import SidebarComponent from "./UI/SidebarComponent/SidebarComponent";
@@ -71,35 +72,27 @@ class ExchangeRates extends Component {
 
   componentDidMount() {
     this.fetchAPI(this.state.baseAPICurrency);
-    this.animateCurrencyComponentsIn();
   }
 
   animateCurrencyComponentsIn = () => {
-    setTimeout(() => {
-      this.refs.CurrencyComponentHolder.querySelectorAll(
-        ".CurrencyComponent"
-      ).forEach((item, index) => {
-        setTimeout(() => {
-          item.classList.add("Appear");
-        }, index * 20);
-      });
-    }, 100);
+    // setTimeout(() => {
+    //   document.querySelectorAll(".CurrencyComponent").forEach((item, index) => {
+    //     setTimeout(() => {
+    //       item.classList.add("Appear");
+    //     }, index * 20);
+    //   });
+    // }, 100);
   };
 
   animateCurrencyComponentsOut = () => {
-    this.refs.CurrencyComponentHolder.querySelectorAll(
-      ".CurrencyComponent"
-    ).forEach(item => {
-      item.style.transitionDelay = "0s";
-      item.classList.remove("Appear");
-    });
+    // document.querySelectorAll(".CurrencyComponent").forEach(item => {
+    //   item.style.transitionDelay = "0s";
+    //   item.classList.remove("Appear");
+    // });
   };
 
   BaseClickHandler = (e, newCurrency) => {
     this.setState({ loading: true });
-    this.refs.ConverterComponent.refs.ConverterComponentBase.classList.add(
-      "Updating"
-    );
     e.stopPropagation();
     this.animateCurrencyComponentsOut();
     setTimeout(() => {
@@ -150,50 +143,75 @@ class ExchangeRates extends Component {
       // MAIN RENDER
       return (
         <div>
-          <SidebarComponent savedTransactions={this.state.savedTransactions} />
-          <div className="ContentHolder">
-            <Header>
-              <h1>Dashboard</h1>
-              <NotificationComponent
-                notifications={this.state.notifications}
-                clearNotifications={this.ClearNotifications.bind(this)}
-              />
-            </Header>
-            <ConverterComponent
-              ref="ConverterComponent"
-              baseCurrency={data["base"]}
-              targetCurrency={this.state.targetCurrency}
-              loading={this.state.loading}
-              addNewNotification={this.AddNewNotification}
-              saveTransaction={this.SaveTransaction}
+          <Router>
+            <SidebarComponent
+              savedTransactions={this.state.savedTransactions}
             />
-            <div className="ExchangeRatesContent">
-              <div className="ContentTopHolder">
-                <div>
-                  <h2>Exchange Rates</h2>
-                  <h4>Date: {data["date"]}</h4>
-                </div>
-                <div>
-                  <SearchComponent
-                    componentArray={componentArray}
-                    componentHolder={this.refs.CurrencyComponentHolder}
-                  />
-                </div>
-              </div>
-              <ul
-                className="CurrencyComponentHolder"
-                ref="CurrencyComponentHolder"
-              >
-                {this.state.loading ? (
-                  <div className="CurrencyComponentHolderLoader">
-                    <LoaderComponent />
+
+            <div className="ContentHolder">
+              <Header>
+                <h1>Dashboard</h1>
+                <NotificationComponent
+                  notifications={this.state.notifications}
+                  clearNotifications={this.ClearNotifications.bind(this)}
+                />
+              </Header>
+              <BackToTop clicked={this.scrollToTop} />
+
+              <Route
+                exact
+                path="/transactions"
+                render={props => (
+                  <div>
+                    <CurrencyComponent
+                      {...props}
+                      key={123}
+                      name={"EUR"}
+                      value={123}
+                      baseCur={data["base"]}
+                      clickedBase={this.BaseClickHandler.bind(this)}
+                      clickedTarget={this.TargetClickHandler.bind(this)}
+                    />
                   </div>
-                ) : null}
-                {displayRates}
-              </ul>
+                )}
+              />
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <div>
+                    <ConverterComponent
+                      {...props}
+                      baseCurrency={data["base"]}
+                      targetCurrency={this.state.targetCurrency}
+                      loading={this.state.loading}
+                      addNewNotification={this.AddNewNotification}
+                      saveTransaction={this.SaveTransaction}
+                    />
+                    <div className="ExchangeRatesContent">
+                      <div className="ContentTopHolder">
+                        <div>
+                          <h2>Exchange Rates</h2>
+                          <h4>Date: {data["date"]}</h4>
+                        </div>
+                        <div>
+                          <SearchComponent componentArray={componentArray} />
+                        </div>
+                      </div>
+                      <ul className="CurrencyComponentHolder">
+                        {this.state.loading ? (
+                          <div className="CurrencyComponentHolderLoader">
+                            <LoaderComponent />
+                          </div>
+                        ) : null}
+                        {displayRates}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              />
             </div>
-          </div>
-          <BackToTop clicked={this.scrollToTop} />
+          </Router>
         </div>
       );
     } else {

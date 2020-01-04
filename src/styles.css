@@ -47,8 +47,8 @@ body {
   transition: transform 0.7s, opacity 0.5s,
     box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   background-color: #fff;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  /* transform: translateY(20px); */
 }
 
 .CurrencyComponentIsBase {
@@ -56,10 +56,10 @@ body {
   border: 1px solid #fff;
 }
 
-.CurrencyComponent.Appear {
+/* .CurrencyComponent.Appear {
   opacity: 1;
   transform: translateY(0);
-}
+} */
 
 .CurrencyComponent:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08), 0 10px 10px rgba(0, 0, 0, 0.08);
@@ -535,6 +535,7 @@ ul {
   opacity: 0;
   transform: translateY(10px);
   animation: notification-appear 0.3s cubic-bezier(0.04, 0.68, 0.25, 1) forwards;
+  border: 1px solid #efefef;
 }
 
 .NotificationItem.Disappear {
