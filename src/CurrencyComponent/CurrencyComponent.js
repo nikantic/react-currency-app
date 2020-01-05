@@ -45,7 +45,9 @@ class CurrencyComponent extends Component {
             {this.props.value.toFixed(3)}{" "}
             <small>(1 {this.props.baseCur})</small>
           </span>
-          <small>{this.state.fullName}</small>
+          <small className="CurrencyComponentRightSideCurrency">
+            {this.state.fullName}
+          </small>
           <span
             className="CurrencyComponentRightSideButton"
             onClick={e =>

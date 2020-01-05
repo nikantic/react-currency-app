@@ -80,7 +80,9 @@ body {
   transition: 0.2s;
 }
 
-.CurrencyComponent:hover .CurrencyComponentRightSide small {
+.CurrencyComponent:hover
+  .CurrencyComponentRightSide
+  .CurrencyComponentRightSideCurrency {
   opacity: 0;
   transition: 0.1s;
 }
@@ -172,7 +174,7 @@ body {
   display: inline-block;
   border-radius: 100%;
   margin: 2px;
-  border: 3px solid #673ab7;
+  border: 3px solid #0052b4;
   border-bottom-color: transparent;
   height: 36px;
   width: 36px;
@@ -354,8 +356,8 @@ ul {
   align-items: center;
   padding-left: 23px;
   padding-top: 20px;
-  padding-bottom: 23px;
-  background-color: #0e0e0e;
+  padding-bottom: 22px;
+  background-color: #0052b4;
 }
 
 .Logo svg {
@@ -366,8 +368,7 @@ ul {
 }
 
 .Logo svg path:first-child {
-  fill: #43ffce;
-  transform-origin: 32% 25%;
+  transform-origin: 35% 25%;
   animation: animateLogo 1s;
   transition: 0.5s;
 }
@@ -401,14 +402,21 @@ ul {
 }
 
 .SidebarItemsHolder {
-  margin-top: 26px;
+  margin-top: 43px;
 }
 
-.SidebarItem {
+.SidebarItemsHolder > a {
+  position: relative;
+  display: block;
+  text-decoration: none;
   padding: 7px 42px;
 }
 
-.SidebarItem a {
+.SidebarItemsHolder > a.active {
+  border-left: 2px solid #0052b4;
+}
+
+.SidebarItem {
   position: relative;
   display: flex;
   align-items: center;

@@ -2,31 +2,40 @@ import React from "react";
 import Logo from "../Logo/Logo";
 import SidebarItem from "./SidebarItem/SidebarItem";
 import SidebarSeparator from "./SidebarSeparator/SidebarSeparator";
-import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const SidebarComponent = props => {
   return (
     <div className="SidebarHolder">
       <Logo />
       <div className="SidebarItemsHolder">
-        <SidebarItem name="home" label="Home" location="/" active />
-        <div>
-          <Link to="/">Home</Link>
-        </div>
-        <div>
-          <Link to="/transactions">Convert</Link>
-        </div>
-        <SidebarItem
-          name="trans"
-          label="My Transactions"
-          location="/transactions"
-          savedTransactions={props.savedTransactions}
-        />
-        <SidebarItem name="charts" label="Charts" location="/charts" />
+        <NavLink exact to="/">
+          <SidebarItem name="home" label="Home" />
+        </NavLink>
+        <NavLink exact to="/transactions">
+          {" "}
+          <SidebarItem
+            name="trans"
+            label="My Transactions"
+            savedTransactions={props.savedTransactions}
+          />
+        </NavLink>
+        <NavLink exact to="/charts">
+          <SidebarItem name="charts" label="Charts" />
+        </NavLink>
         <SidebarSeparator />
-        <SidebarItem name="settings" label="Settings" location="/settings" />
-        <SidebarItem name="about" label="About" location="/about" />
-        <SidebarItem name="contact" label="Contact" location="/about" />
+        <NavLink exact to="/settings">
+          <SidebarItem name="settings" label="Settings" />
+        </NavLink>
+        <NavLink exact to="/about">
+          <SidebarItem name="about" label="About" />
+        </NavLink>
+        <NavLink exact to="/github">
+          <SidebarItem name="github" label="GitHub" />
+        </NavLink>
+        <NavLink exact to="/contact">
+          <SidebarItem name="contact" label="Contact" />
+        </NavLink>
         <p className="SidebarSmallText">
           Made with{" "}
           <span role="img" aria-label="heart">
