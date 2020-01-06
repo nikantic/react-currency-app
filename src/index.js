@@ -155,7 +155,6 @@ class ExchangeRates extends Component {
 
             <div className="ContentHolder">
               <Header>
-                <h1>Dashboard</h1>
                 <NotificationComponent
                   notifications={this.state.notifications}
                   clearNotifications={this.ClearNotifications.bind(this)}

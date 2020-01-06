@@ -15,8 +15,9 @@ dashboard title update
 get date of transaction
 settings - change base, change app accent color, night mode, disable notifications
 view transaction details
-momment
+momment.js
 update transactions number counter
+use date as unique key in transaction component when you implement it
 
 // FINAL polish
 
