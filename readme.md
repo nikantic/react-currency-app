@@ -10,6 +10,13 @@ currency item hover (show not hide cur)
 animations components dont work (in out, when changing route)
 search relays on holder class
 converter component too many refs and resets input value on save or on route change
+unique keys
+dashboard title update
+get date of transaction
+settings - change base, change app accent color, night mode, disable notifications
+view transaction details
+momment
+update transactions number counter
 
 // FINAL polish
 

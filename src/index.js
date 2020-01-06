@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import CurrencyComponent from "./CurrencyComponent/CurrencyComponent";
 import LoaderComponent from "./UI/LoaderComponent/LoaderComponent";
 import SidebarComponent from "./UI/SidebarComponent/SidebarComponent";
@@ -9,6 +9,7 @@ import BackToTop from "./UI/BackToTop/BackToTop";
 import SearchComponent from "./SearchComponent/SearchComponent";
 import Header from "./UI/Header/Header";
 import NotificationComponent from "./UI/NotificationComponent/NotificationComponent";
+import TransactionsComponent from "./TransactionsComponent/TransactionsComponent";
 
 import "./styles.css";
 
@@ -35,6 +36,10 @@ class ExchangeRates extends Component {
     this.setState({
       savedTransactions: [transaction, ...this.state.savedTransactions]
     });
+  };
+
+  ClearSavedTransactions = () => {
+    this.setState({ savedTransactions: [] });
   };
 
   ClearNotifications = () => {
@@ -163,14 +168,10 @@ class ExchangeRates extends Component {
                 path="/transactions"
                 render={props => (
                   <div>
-                    <CurrencyComponent
+                    <TransactionsComponent
                       {...props}
-                      key={123}
-                      name={"EUR"}
-                      value={123}
-                      baseCur={data["base"]}
-                      clickedBase={this.BaseClickHandler.bind(this)}
-                      clickedTarget={this.TargetClickHandler.bind(this)}
+                      savedTransactions={this.state.savedTransactions}
+                      clearTransactions={this.ClearSavedTransactions.bind(this)}
                     />
                   </div>
                 )}

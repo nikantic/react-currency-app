@@ -357,7 +357,7 @@ ul {
   padding-left: 23px;
   padding-top: 20px;
   padding-bottom: 22px;
-  background-color: #0052b4;
+  background-color: #00b45d;
 }
 
 .Logo svg {
@@ -368,7 +368,7 @@ ul {
 }
 
 .Logo svg path:first-child {
-  transform-origin: 35% 25%;
+  transform-origin: 32.3% 25%;
   animation: animateLogo 1s;
   transition: 0.5s;
 }
@@ -413,7 +413,7 @@ ul {
 }
 
 .SidebarItemsHolder > a.active {
-  border-left: 2px solid #0052b4;
+  border-left: 2px solid #00b45d;
 }
 
 .SidebarItem {
@@ -468,6 +468,7 @@ ul {
 .SidebarItem .SidebarItemLabel {
   margin-left: 15px;
   margin-top: 5px;
+  letter-spacing: 0.01em;
 }
 
 .SidebarSmallText {
@@ -531,6 +532,21 @@ ul {
   overflow-y: scroll;
   height: 520px;
   z-index: 123;
+}
+
+.NotificationComponentInnerHolder::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.NotificationComponentInnerHolder::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+.NotificationComponentInnerHolder::-webkit-scrollbar-thumb {
+  background: #ececec;
+  border-radius: 1px;
 }
 
 .NotificationItem {
@@ -717,4 +733,44 @@ ul {
   left: -220px;
   width: 300px;
   z-index: 12;
+  pointer-events: none;
+}
+
+.TransactionItem {
+  background: #fff;
+  border-top: 1px solid #ececec;
+}
+
+.TransactionItem > div {
+  display: inline-block;
+}
+
+.CurrencyComponentTransactionItem {
+  width: 329px;
+  height: 122px;
+  box-shadow: none;
+  background: none;
+  pointer-events: none;
+}
+
+.CurrencyComponentTransactionItem .CurrencyComponentLeftSide img {
+  max-width: 48%;
+}
+
+.TransactionItem > svg {
+  position: relative;
+  top: -15px;
+  margin-right: 60px;
+  margin-left: -21px;
+}
+
+.ClearAllTransactionsButton {
+  margin-top: 14px;
+  margin-left: 50px;
+  font-size: 14px;
+  text-decoration: underline;
+  color: cadetblue;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
 }

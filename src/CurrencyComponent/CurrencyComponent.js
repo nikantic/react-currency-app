@@ -26,7 +26,8 @@ class CurrencyComponent extends Component {
           "CurrencyComponent " +
           (this.props.baseCur === this.props.name
             ? "CurrencyComponentIsBase"
-            : "")
+            : "") +
+          (this.props.transactionItem ? "CurrencyComponentTransactionItem" : "")
         }
         key={this.props.value}
         onClick={e => this.props.clickedBase(e, this.props.name)}
@@ -43,7 +44,9 @@ class CurrencyComponent extends Component {
           </div>
           <span className="CurrencyComponentRightSideValue">
             {this.props.value.toFixed(3)}{" "}
-            <small>(1 {this.props.baseCur})</small>
+            {this.props.baseCur ? (
+              <small>(1 {this.props.baseCur})</small>
+            ) : null}
           </span>
           <small className="CurrencyComponentRightSideCurrency">
             {this.state.fullName}

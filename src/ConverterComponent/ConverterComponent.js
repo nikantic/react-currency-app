@@ -21,8 +21,12 @@ class ConverterComponent extends Component {
 
   SaveTransactionHandler = () => {
     this.props.saveTransaction({
-      [this.state.baseCur.name]: parseFloat(this.state.baseInput),
-      [this.state.targetCur.name]: parseFloat(this.state.targetInput)
+      baseCur: {
+        [this.state.baseCur.name]: parseFloat(this.state.baseInput)
+      },
+      targetCur: {
+        [this.state.targetCur.name]: parseFloat(this.state.targetInput)
+      }
     });
 
     this.props.addNewNotification(

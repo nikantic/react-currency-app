@@ -138,12 +138,18 @@ class NotificationComponent extends Component {
             <strong>Notifications</strong>
           </div>
           <div>{notificationItemsDisplay}</div>
-          <div
-            className="ClearAllButton"
-            onClick={this.props.clearNotifications}
-          >
-            Clear All
-          </div>
+          {this.props.notifications.length !== 0 ? (
+            <div
+              className="ClearAllButton"
+              onClick={this.props.clearNotifications}
+            >
+              Clear All
+            </div>
+          ) : (
+            <div>
+              <p>No new notifications.</p>
+            </div>
+          )}
         </div>
         <div className="NotificationComponentDisplayOverlay">
           {this.state.notificationsDisplay}
