@@ -31,6 +31,7 @@ body {
 .ContentHolder {
   width: 100%;
   overflow-y: scroll;
+  overflow-x: hidden;
   background-color: #f9f9f9;
 }
 
@@ -174,7 +175,7 @@ body {
   display: inline-block;
   border-radius: 100%;
   margin: 2px;
-  border: 3px solid #0052b4;
+  border: 3px solid #00b45d;
   border-bottom-color: transparent;
   height: 36px;
   width: 36px;
@@ -471,13 +472,23 @@ ul {
   letter-spacing: 0.01em;
 }
 
-.SidebarSmallText {
+.SidebarItemsHolder .SidebarSmallText {
   position: absolute;
-  bottom: 20px;
+  bottom: 34px;
   left: 52px;
   font-size: 12px;
   color: #ececec;
   font-family: monospace;
+  padding: 0;
+}
+
+.SidebarSmallText span {
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.SidebarSmallText:hover span {
+  transform: scaleX(-1);
 }
 
 .NotificationComponentHolder {
@@ -530,6 +541,7 @@ ul {
   transition: 0.2s;
   pointer-events: none;
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 520px;
   z-index: 123;
 }
@@ -767,10 +779,46 @@ ul {
 .ClearAllTransactionsButton {
   margin-top: 14px;
   margin-left: 50px;
+  margin-bottom: 20px;
   font-size: 14px;
   text-decoration: underline;
   color: cadetblue;
   display: inline-block;
   width: 100%;
   cursor: pointer;
+}
+
+.TransactionsComponentEmptyState {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 155px;
+  background: #fff;
+}
+
+.TransactionsComponentEmptyState p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 19px;
+  color: #2b2b2b;
+  padding: 50px;
+}
+
+.TransactionsComponentEmptyState svg {
+  fill: #f9f9f9;
+  width: 250px;
+  height: 250px;
+}
+
+.NotificationComponentEmptyState p {
+  color: #2b2b2b;
+  padding: 38px 71px;
+}
+
+.NotificationComponentEmptyState svg {
+  position: absolute;
+  height: 134%;
+  fill: #f9f9f9;
 }

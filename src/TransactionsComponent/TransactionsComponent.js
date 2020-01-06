@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import TransactionItem from "./TransactionItem/TransactionItem";
+import Logo from "../UI/Logo/Logo";
 
 class TransactionsComponent extends Component {
   render() {
@@ -34,7 +35,13 @@ class TransactionsComponent extends Component {
             </div>
           ]
         ) : (
-          <p>Your saved transactions will appear here. Start saving!</p>
+          <Fragment>
+            <div className="TransactionsComponentEmptyState">
+              {" "}
+              <p>Your saved transactions will appear here. Start saving!</p>
+              <Logo onlySVG />
+            </div>
+          </Fragment>
         )}
       </div>
     );

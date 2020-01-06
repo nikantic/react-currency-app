@@ -36,13 +36,18 @@ const SidebarComponent = props => {
         <NavLink exact to="/contact">
           <SidebarItem name="contact" label="Contact" />
         </NavLink>
-        <p className="SidebarSmallText">
+        <a
+          className="SidebarSmallText"
+          href="https://nikantic.github.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Made with{" "}
           <span role="img" aria-label="heart">
             ❤️
           </span>{" "}
           by Nikola Antic
-        </p>
+        </a>
       </div>
     </div>
   );

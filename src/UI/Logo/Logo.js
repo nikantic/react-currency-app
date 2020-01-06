@@ -1,8 +1,8 @@
 import React from "react";
 
-const Logo = () => {
+const Logo = props => {
   return (
-    <div className="Logo">
+    <div className={props.onlySVG ? "" : "Logo"}>
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -18,10 +18,12 @@ const Logo = () => {
           </g>
         </svg>
       </div>
-      <span>
-        Currency Exchange
-        <p>React Currency Exchange App</p>
-      </span>
+      {props.onlySVG ? null : (
+        <span>
+          Currency Exchange
+          <p>React Currency Exchange App</p>
+        </span>
+      )}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NotificationItem from "./NotificationItem/NotificationItem";
+import Logo from "../Logo/Logo";
 // import NotificationMessages from "./notification_messages";
 
 class NotificationComponent extends Component {
@@ -146,8 +147,9 @@ class NotificationComponent extends Component {
               Clear All
             </div>
           ) : (
-            <div>
+            <div className="NotificationComponentEmptyState">
               <p>No new notifications.</p>
+              <Logo onlySVG />
             </div>
           )}
         </div>
