@@ -749,7 +749,8 @@ ul {
 }
 
 .TransactionItem {
-  background: #fff;
+  position: relative;
+  background-color: #fff;
   border-top: 1px solid #ececec;
 }
 
@@ -821,4 +822,13 @@ ul {
   position: absolute;
   height: 134%;
   fill: #f9f9f9;
+}
+
+.TransactionItemDate {
+  position: absolute;
+  left: 300px;
+  padding: 8px 13px;
+  background-color: #f9f9f9;
+  color: #2b2b2b;
+  font-size: 13px;
 }

@@ -4,23 +4,20 @@ import EmptyStateComponent from "../UI/EmptyState/EmptyStateComponent";
 
 class TransactionsComponent extends Component {
   render() {
-    let displayTransactions = [];
-
-    if (this.props.savedTransactions.length !== 0) {
-      displayTransactions = (() => {
-        let arr = [];
-        this.props.savedTransactions.forEach((item, index) => {
-          arr.push(
-            <TransactionItem
-              key={index}
-              baseCur={item["baseCur"]}
-              targetCur={item["targetCur"]}
-            />
-          );
-        });
-        return arr;
-      })();
-    }
+    const displayTransactions = (() => {
+      let arr = [];
+      this.props.savedTransactions.forEach((item, index) => {
+        arr.push(
+          <TransactionItem
+            key={index}
+            baseCur={item["baseCur"]}
+            targetCur={item["targetCur"]}
+            transactionDate={item["transactionDate"]}
+          />
+        );
+      });
+      return arr;
+    })();
 
     return (
       <div>
@@ -28,6 +25,7 @@ class TransactionsComponent extends Component {
           [
             displayTransactions,
             <div
+              key="ClearAllTransactionsButton"
               className="ClearAllTransactionsButton"
               onClick={this.props.clearTransactions}
             >

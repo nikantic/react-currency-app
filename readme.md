@@ -4,11 +4,6 @@
 // settings - change base, change app accent color, night mode, disable notifications
 // chart.js
 
-// DATE
-unique keys
-momment.js
-get date of transaction (use date as unique key in transaction component)
-
 // FIXES
 animations components dont work (in out, when changing route)
 search relays on holder class

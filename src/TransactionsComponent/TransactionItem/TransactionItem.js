@@ -1,6 +1,7 @@
 import React from "react";
 import CurrencyComponent from "../../CurrencyComponent/CurrencyComponent";
 import ExchangeArrowSVG from "../../UI/ExchangeArrowSVG/ExchangeArrowSVG";
+import moment from "moment";
 
 const TransactionItem = props => {
   const baseCur = {
@@ -15,6 +16,9 @@ const TransactionItem = props => {
 
   return (
     <div className="TransactionItem">
+      <div className="TransactionItemDate">
+        {moment(props.transactionDate, "YYYYMMDD").format("LTS")}
+      </div>
       <div className="TransactionItemBase">
         <CurrencyComponent
           key={baseCur.name}

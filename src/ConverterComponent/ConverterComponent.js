@@ -26,7 +26,8 @@ class ConverterComponent extends Component {
       },
       targetCur: {
         [this.state.targetCur.name]: parseFloat(this.state.targetInput)
-      }
+      },
+      transactionDate: new Date()
     });
 
     this.props.addNewNotification(
