@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
 import CurrencyComponent from "./CurrencyComponent/CurrencyComponent";
 import LoaderComponent from "./UI/LoaderComponent/LoaderComponent";
 import SidebarComponent from "./UI/SidebarComponent/SidebarComponent";
@@ -10,6 +10,7 @@ import SearchComponent from "./SearchComponent/SearchComponent";
 import Header from "./UI/Header/Header";
 import NotificationComponent from "./UI/NotificationComponent/NotificationComponent";
 import TransactionsComponent from "./TransactionsComponent/TransactionsComponent";
+import EmptyStateComponent from "./UI/EmptyState/EmptyStateComponent";
 
 import "./styles.css";
 
@@ -162,54 +163,69 @@ class ExchangeRates extends Component {
               </Header>
               <BackToTop clicked={this.scrollToTop} />
 
-              <Route
-                exact
-                path="/transactions"
-                render={props => (
-                  <div>
-                    <TransactionsComponent
-                      {...props}
-                      savedTransactions={this.state.savedTransactions}
-                      clearTransactions={this.ClearSavedTransactions.bind(this)}
-                    />
-                  </div>
-                )}
-              />
-              <Route
-                exact
-                path="/"
-                render={props => (
-                  <div>
-                    <ConverterComponent
-                      {...props}
-                      baseCurrency={data["base"]}
-                      targetCurrency={this.state.targetCurrency}
-                      loading={this.state.loading}
-                      addNewNotification={this.AddNewNotification}
-                      saveTransaction={this.SaveTransaction}
-                    />
-                    <div className="ExchangeRatesContent">
-                      <div className="ContentTopHolder">
-                        <div>
-                          <h2>Exchange Rates</h2>
-                          <h4>Date: {data["date"]}</h4>
-                        </div>
-                        <div>
-                          <SearchComponent componentArray={componentArray} />
-                        </div>
-                      </div>
-                      <ul className="CurrencyComponentHolder">
-                        {this.state.loading ? (
-                          <div className="CurrencyComponentHolderLoader">
-                            <LoaderComponent />
-                          </div>
-                        ) : null}
-                        {displayRates}
-                      </ul>
+              <Switch>
+                <Route
+                  exact
+                  path="/transactions"
+                  render={props => (
+                    <div>
+                      <TransactionsComponent
+                        {...props}
+                        savedTransactions={this.state.savedTransactions}
+                        clearTransactions={this.ClearSavedTransactions.bind(
+                          this
+                        )}
+                      />
                     </div>
-                  </div>
-                )}
-              />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/"
+                  render={props => (
+                    <div>
+                      <ConverterComponent
+                        {...props}
+                        baseCurrency={data["base"]}
+                        targetCurrency={this.state.targetCurrency}
+                        loading={this.state.loading}
+                        addNewNotification={this.AddNewNotification}
+                        saveTransaction={this.SaveTransaction}
+                      />
+                      <div className="ExchangeRatesContent">
+                        <div className="ContentTopHolder">
+                          <div>
+                            <h2>Exchange Rates</h2>
+                            <h4>Date: {data["date"]}</h4>
+                          </div>
+                          <div>
+                            <SearchComponent componentArray={componentArray} />
+                          </div>
+                        </div>
+                        <ul className="CurrencyComponentHolder">
+                          {this.state.loading ? (
+                            <div className="CurrencyComponentHolderLoader">
+                              <LoaderComponent />
+                            </div>
+                          ) : null}
+                          {displayRates}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+                />
+                <Route
+                  path="*"
+                  render={props => (
+                    <EmptyStateComponent>
+                      <p>
+                        The route you tried to reach doesn't exist yet. Go back{" "}
+                        <Link to="/">Home</Link>
+                      </p>
+                    </EmptyStateComponent>
+                  )}
+                />
+              </Switch>
             </div>
           </Router>
         </div>

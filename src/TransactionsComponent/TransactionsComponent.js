@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import TransactionItem from "./TransactionItem/TransactionItem";
-import Logo from "../UI/Logo/Logo";
+import EmptyStateComponent from "../UI/EmptyState/EmptyStateComponent";
 
 class TransactionsComponent extends Component {
   render() {
@@ -35,13 +35,9 @@ class TransactionsComponent extends Component {
             </div>
           ]
         ) : (
-          <Fragment>
-            <div className="TransactionsComponentEmptyState">
-              {" "}
-              <p>Your saved transactions will appear here. Start saving!</p>
-              <Logo onlySVG />
-            </div>
-          </Fragment>
+          <EmptyStateComponent>
+            <p>Your saved transactions will appear here. Start saving!</p>
+          </EmptyStateComponent>
         )}
       </div>
     );

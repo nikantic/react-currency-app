@@ -1,33 +1,27 @@
 #Todo - react-currency-app
 
 // == FEATURES
-// router - 404 and error handling
+// settings - change base, change app accent color, night mode, disable notifications
 // chart.js
 
-//todo new
-notifications close holder on clear all
-currency item hover (show not hide cur)
+// DATE
+unique keys
+momment.js
+get date of transaction (use date as unique key in transaction component)
+
+// FIXES
 animations components dont work (in out, when changing route)
 search relays on holder class
 converter component too many refs and resets input value on save or on route change
-unique keys
-dashboard title update
-get date of transaction
-settings - change base, change app accent color, night mode, disable notifications
-view transaction details
-momment.js
 update transactions number counter
-use date as unique key in transaction component when you implement it
 
 // FINAL polish
+// mobile responsive - transition to top of the page when clicking?
 
-- replace some svg sidebar icons for thinner ones
+- replace some svg sidebar icons for thinner ones, custom font, design
 - documentation, description (react SPA)
 
-// == VISUAL
-// mobile responsive - transition to top of the page when clicking?
-// design - dont waste time here - custom font, colors
-
+// DOCUMENTATION
 // credits:
 // flat icons
 // api
