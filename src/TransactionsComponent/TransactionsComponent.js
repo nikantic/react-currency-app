@@ -10,9 +10,11 @@ class TransactionsComponent extends Component {
         arr.push(
           <TransactionItem
             key={index}
+            id={index}
             baseCur={item["baseCur"]}
             targetCur={item["targetCur"]}
             transactionDate={item["transactionDate"]}
+            removeTransaction={this.props.removeTransaction}
           />
         );
       });
@@ -20,7 +22,7 @@ class TransactionsComponent extends Component {
     })();
 
     return (
-      <div>
+      <div className="TransactionItemsHolder">
         {displayTransactions.length !== 0 ? (
           [
             displayTransactions,

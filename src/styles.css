@@ -752,6 +752,11 @@ ul {
   position: relative;
   background-color: #fff;
   border-top: 1px solid #ececec;
+  transition: 0.2s;
+}
+
+.TransactionItem:hover {
+  background: #fbfbfb;
 }
 
 .TransactionItem > div {
@@ -831,4 +836,21 @@ ul {
   background-color: #f9f9f9;
   color: #2b2b2b;
   font-size: 13px;
+}
+
+.TransactionItemRemove {
+  position: absolute;
+  left: 290px;
+  bottom: 6px;
+  display: inline-block;
+  color: cadetblue;
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.2s;
+  font-size: 13px;
+}
+
+.TransactionItem:hover .TransactionItemRemove {
+  opacity: 1;
 }

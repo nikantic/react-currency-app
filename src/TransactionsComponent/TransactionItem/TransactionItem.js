@@ -16,6 +16,12 @@ const TransactionItem = props => {
 
   return (
     <div className="TransactionItem">
+      <div
+        className="TransactionItemRemove"
+        onClick={() => props.removeTransaction(props.id)}
+      >
+        <p>Remove Transaction</p>
+      </div>
       <div className="TransactionItemDate">
         {moment(props.transactionDate, "YYYYMMDD").format("LTS")}
       </div>

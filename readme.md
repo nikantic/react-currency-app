@@ -1,8 +1,9 @@
 #Todo - react-currency-app
 
 // == FEATURES
-// settings - change base, change app accent color, night mode, disable notifications
+// settings - change default base, change app accent color, night mode, disable notifications
 // chart.js
+// currency component options (set as base, show chart)
 
 // FIXES
 animations components dont work (in out, when changing route)
@@ -11,8 +12,8 @@ converter component too many refs and resets input value on save or on route cha
 update transactions number counter
 
 // FINAL polish
-// mobile responsive - transition to top of the page when clicking?
 
+- mobile responsive - transition to top of the page when clicking?
 - replace some svg sidebar icons for thinner ones, custom font, design
 - documentation, description (react SPA)
 

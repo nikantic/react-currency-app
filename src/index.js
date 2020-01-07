@@ -39,6 +39,12 @@ class ExchangeRates extends Component {
     });
   };
 
+  RemoveSavedTransaction = transactionId => {
+    let savedTransactionArr = this.state.savedTransactions;
+    savedTransactionArr.splice(transactionId, 1);
+    this.setState({ savedTransaction: savedTransactionArr });
+  };
+
   ClearSavedTransactions = () => {
     this.setState({ savedTransactions: [] });
   };
@@ -173,6 +179,9 @@ class ExchangeRates extends Component {
                         {...props}
                         savedTransactions={this.state.savedTransactions}
                         clearTransactions={this.ClearSavedTransactions.bind(
+                          this
+                        )}
+                        removeTransaction={this.RemoveSavedTransaction.bind(
                           this
                         )}
                       />
