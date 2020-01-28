@@ -11,6 +11,7 @@ import Header from "./UI/Header/Header";
 import NotificationComponent from "./UI/NotificationComponent/NotificationComponent";
 import TransactionsComponent from "./TransactionsComponent/TransactionsComponent";
 import EmptyStateComponent from "./UI/EmptyState/EmptyStateComponent";
+import ChartsComponent from "./ChartsComponent/ChartsComponent";
 
 import "./styles.css";
 
@@ -193,6 +194,7 @@ class ExchangeRates extends Component {
                   path="/"
                   render={props => (
                     <div>
+                      <ChartsComponent {...props} data={data} />
                       <ConverterComponent
                         {...props}
                         baseCurrency={data["base"]}
@@ -222,6 +224,11 @@ class ExchangeRates extends Component {
                       </div>
                     </div>
                   )}
+                />
+                <Route
+                  exact
+                  path="/charts"
+                  render={props => <ChartsComponent {...props} data={data} />}
                 />
                 <Route
                   path="*"
