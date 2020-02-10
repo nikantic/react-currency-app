@@ -4,6 +4,7 @@
 // settings - change default base, change app accent color, night mode, disable notifications
 // chart.js
 // currency component options (set as base, show chart)
+// compare currency values
 
 // FIXES
 animations components dont work (in out, when changing route)

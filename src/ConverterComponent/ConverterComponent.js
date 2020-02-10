@@ -205,8 +205,17 @@ class ConverterComponent extends Component {
           className="ConverterComponentSaveButton"
           onClick={this.SaveTransactionHandler}
         >
-          <svg width="512pt" height="512pt" viewBox="0 0 512 512">
-            <path d="m409.785156 278.5-153.785156 153.785156-153.785156-153.785156 28.285156-28.285156 105.5 105.5v-355.714844h40v355.714844l105.5-105.5zm102.214844 193.5h-512v40h512zm0 0" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+            x="0px"
+            y="0px"
+            viewBox="0 0 32 32"
+          >
+            <line x1="15.5" y1="1" x2="15.5" y2="25.1" />
+            <line x1="24.8" y1="16.8" x2="15.5" y2="26.1" />
+            <line x1="6.2" y1="16.8" x2="15.5" y2="26.1" />
+            <polyline points="1,25.5 1,30.9 31,30.9 31,24.9 " />
           </svg>
         </div>
       </div>

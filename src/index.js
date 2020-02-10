@@ -20,7 +20,8 @@ class ExchangeRates extends Component {
     baseAPICurrency: "EUR",
     targetCurrency: {
       name: "USD",
-      value: 0
+      value: 0,
+      data: []
     },
     data: [],
     loading: false,
@@ -77,6 +78,22 @@ class ExchangeRates extends Component {
       .catch(error => console.log(error.message));
   };
 
+  fetchTargetAPI = newCur => {
+    const url = "https://api.exchangeratesapi.io/latest?base=" + newCur;
+
+    fetch(url)
+      .then(result => result.json())
+      .then(result => {
+        this.setState(prevState => ({
+          targetCurrency: {
+            ...prevState.targetCurrency,
+            data: result
+          }
+        }));
+      })
+      .catch(error => console.log(error.message));
+  };
+
   scrollToTop = () => {
     document
       .querySelector(".ContentHolder")
@@ -85,23 +102,24 @@ class ExchangeRates extends Component {
 
   componentDidMount() {
     this.fetchAPI(this.state.baseAPICurrency);
+    this.fetchTargetAPI(this.state.targetCurrency["name"]);
   }
 
   animateCurrencyComponentsIn = () => {
-    // setTimeout(() => {
-    //   document.querySelectorAll(".CurrencyComponent").forEach((item, index) => {
-    //     setTimeout(() => {
-    //       item.classList.add("Appear");
-    //     }, index * 20);
-    //   });
-    // }, 100);
+    setTimeout(() => {
+      document.querySelectorAll(".CurrencyComponent").forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add("Appear");
+        }, index * 20);
+      });
+    }, 100);
   };
 
   animateCurrencyComponentsOut = () => {
-    // document.querySelectorAll(".CurrencyComponent").forEach(item => {
-    //   item.style.transitionDelay = "0s";
-    //   item.classList.remove("Appear");
-    // });
+    document.querySelectorAll(".CurrencyComponent").forEach(item => {
+      item.style.transitionDelay = "0s";
+      item.classList.remove("Appear");
+    });
   };
 
   BaseClickHandler = (e, newCurrency) => {
@@ -118,8 +136,17 @@ class ExchangeRates extends Component {
 
   TargetClickHandler = (e, newCurrency, newValue) => {
     e.stopPropagation();
-    this.setState({ targetCurrency: { name: newCurrency, value: newValue } });
+    this.setState(prevState => ({
+      targetCurrency: {
+        ...prevState.targetCurrency,
+        name: newCurrency,
+        value: newValue
+      }
+    }));
     this.scrollToTop();
+    setTimeout(() => {
+      this.fetchTargetAPI(this.state.targetCurrency["name"]);
+    }, 0);
   };
 
   render() {
@@ -194,7 +221,11 @@ class ExchangeRates extends Component {
                   path="/"
                   render={props => (
                     <div>
-                      <ChartsComponent {...props} data={data} />
+                      <ChartsComponent
+                        {...props}
+                        baseData={data}
+                        targetData={this.state.targetCurrency.data}
+                      />
                       <ConverterComponent
                         {...props}
                         baseCurrency={data["base"]}
@@ -205,9 +236,10 @@ class ExchangeRates extends Component {
                       />
                       <div className="ExchangeRatesContent">
                         <div className="ContentTopHolder">
-                          <div>
+                          <div className="ContentTopHolderLeft">
                             <h2>Exchange Rates</h2>
                             <h4>Date: {data["date"]}</h4>
+                            <h5>Source: European Central Bank</h5>
                           </div>
                           <div>
                             <SearchComponent componentArray={componentArray} />
@@ -225,11 +257,11 @@ class ExchangeRates extends Component {
                     </div>
                   )}
                 />
-                <Route
+                {/* <Route
                   exact
                   path="/charts"
                   render={props => <ChartsComponent {...props} data={data} />}
-                />
+                /> */}
                 <Route
                   path="*"
                   render={props => (
