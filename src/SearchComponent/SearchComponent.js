@@ -33,12 +33,26 @@ class SearchComponent extends Component {
     let inputVal = e.target.value.toUpperCase();
     if (inputVal !== "") {
       this.findComponent(inputVal, this.props.componentArray);
+      document.addEventListener("mousedown", this.HandleClickOutside, false);
     } else {
       const reversedArray = [...this.props.componentArray].reverse();
       reversedArray.forEach(item => {
         this.prependFoundComponent(item);
       });
+      document.removeEventListener("mousedown", this.HandleClickOutside, false);
     }
+  };
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.HandleClickOutside, false);
+  }
+
+  HandleClickOutside = e => {
+    if (this.refs.SearchComponentInput.contains(e.target)) {
+      return;
+    }
+    // Clear input field on outside click
+    this.refs.SearchComponentInput.value = "";
   };
 
   render() {
@@ -48,6 +62,7 @@ class SearchComponent extends Component {
           placeholder="Search currency"
           type="text"
           onChange={this.SearchHandler}
+          ref="SearchComponentInput"
         />
         <span>
           <svg x="0px" y="0px" viewBox="0 0 451 451">
