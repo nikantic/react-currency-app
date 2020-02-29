@@ -30,6 +30,12 @@ class ExchangeRates extends Component {
     savedTransactions: []
   };
 
+  constructor(props) {
+    super(props);
+    // create a ref to store the searchInput DOM element
+    this.searchInput = React.createRef();
+  }
+
   AddNewNotification = notification => {
     this.setState({
       notifications: [notification, ...this.state.notifications]
@@ -133,6 +139,7 @@ class ExchangeRates extends Component {
     setTimeout(() => {
       this.fetchAPI(newCurrency);
     }, 300);
+    this.searchInput.current.value = "";
   };
 
   TargetClickHandler = (e, newCurrency, newValue) => {
@@ -248,7 +255,10 @@ class ExchangeRates extends Component {
                             <h5>Source: European Central Bank</h5>
                           </div>
                           <div>
-                            <SearchComponent componentArray={componentArray} />
+                            <SearchComponent
+                              searchRef={this.searchInput}
+                              componentArray={componentArray}
+                            />
                           </div>
                         </div>
                         <ul className="CurrencyComponentHolder">

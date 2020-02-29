@@ -2,7 +2,7 @@ import React from "react";
 
 const Logo = props => {
   return (
-    <div className={props.onlySVG ? "" : "Logo"}>
+    <div className={props.onlySVG ? "LogoOnlySVG" : "Logo"}>
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"

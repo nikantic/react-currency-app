@@ -18,7 +18,7 @@ body {
 }
 
 .ExchangeRatesContent {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .SidebarHolder {
@@ -98,7 +98,7 @@ body {
 
 .CurrencyComponentLeftSide img {
   max-height: 100%;
-  max-width: 65%;
+  max-width: 60%;
 }
 
 .CurrencyComponentRightSide {
@@ -259,7 +259,7 @@ body {
 }
 
 .ConverterComponentCurrencyTopInfo img {
-  width: 106px;
+  width: 97px;
   padding: 8px;
   box-sizing: border-box;
 }
@@ -626,6 +626,15 @@ ul {
   cursor: pointer;
 }
 
+.NotificationComponentHolder .LogoOnlySVG > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .SearchComponent {
   position: relative;
   float: right;
@@ -638,7 +647,7 @@ ul {
 .SearchComponent input {
   position: relative;
   max-width: 281px;
-  font-size: 23px;
+  font-size: 20px;
   border: none;
   margin: 0 auto;
   font-weight: 300;
@@ -663,8 +672,8 @@ ul {
 }
 
 .SearchComponent svg {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   fill: #3c3c3c;
 }
 
@@ -933,7 +942,8 @@ ul {
 
 .NotificationComponentEmptyState svg {
   position: absolute;
-  height: 134%;
+  height: 170%;
+  top: 34%;
   fill: #f9f9f9;
 }
 
