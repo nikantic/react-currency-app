@@ -13,8 +13,13 @@ import TransactionsComponent from "./TransactionsComponent/TransactionsComponent
 import EmptyStateComponent from "./UI/EmptyState/EmptyStateComponent";
 import ChartsComponent from "./ChartsComponent/ChartsComponent";
 import moment from "moment";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import reducer from "./store/reducer";
 
 import "./styles.css";
+
+const store = createStore(reducer);
 
 class ExchangeRates extends Component {
   state = {
@@ -25,9 +30,8 @@ class ExchangeRates extends Component {
       data: []
     },
     data: [],
-    loading: false,
     notifications: [],
-    savedTransactions: []
+    loading: false
   };
 
   constructor(props) {
@@ -40,22 +44,6 @@ class ExchangeRates extends Component {
     this.setState({
       notifications: [notification, ...this.state.notifications]
     });
-  };
-
-  SaveTransaction = transaction => {
-    this.setState({
-      savedTransactions: [transaction, ...this.state.savedTransactions]
-    });
-  };
-
-  RemoveSavedTransaction = transactionId => {
-    let savedTransactionArr = this.state.savedTransactions;
-    savedTransactionArr.splice(transactionId, 1);
-    this.setState({ savedTransaction: savedTransactionArr });
-  };
-
-  ClearSavedTransactions = () => {
-    this.setState({ savedTransactions: [] });
   };
 
   ClearNotifications = () => {
@@ -211,16 +199,7 @@ class ExchangeRates extends Component {
                   path="/transactions"
                   render={props => (
                     <div>
-                      <TransactionsComponent
-                        {...props}
-                        savedTransactions={this.state.savedTransactions}
-                        clearTransactions={this.ClearSavedTransactions.bind(
-                          this
-                        )}
-                        removeTransaction={this.RemoveSavedTransaction.bind(
-                          this
-                        )}
-                      />
+                      <TransactionsComponent />
                     </div>
                   )}
                 />
@@ -229,18 +208,17 @@ class ExchangeRates extends Component {
                   path="/"
                   render={props => (
                     <div>
-                      <ChartsComponent
+                      {/* <ChartsComponent
                         {...props}
                         baseData={data}
                         targetData={this.state.targetCurrency.data}
-                      />
+                      /> */}
                       <ConverterComponent
                         {...props}
                         baseCurrency={data["base"]}
                         targetCurrency={this.state.targetCurrency}
                         loading={this.state.loading}
                         addNewNotification={this.AddNewNotification}
-                        saveTransaction={this.SaveTransaction}
                       />
                       <div className="ExchangeRatesContent">
                         <div className="ContentTopHolder">
@@ -300,13 +278,13 @@ class ExchangeRates extends Component {
   }
 }
 
-function App() {
-  return (
+const app = (
+  <Provider store={store}>
     <div className="App">
       <ExchangeRates />
     </div>
-  );
-}
+  </Provider>
+);
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(app, rootElement);

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import TransactionItem from "./TransactionItem/TransactionItem";
 import EmptyStateComponent from "../UI/EmptyState/EmptyStateComponent";
+import { connect } from "react-redux";
+import * as actionTypes from "../store/actions";
 
 class TransactionsComponent extends Component {
   render() {
@@ -44,4 +46,21 @@ class TransactionsComponent extends Component {
   }
 }
 
-export default TransactionsComponent;
+const mapStateToProps = state => {
+  return {
+    savedTransactions: state.savedTransactions
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    clearTransactions: () => dispatch({ type: actionTypes.CLEAR_TRANSACTIONS }),
+    removeTransaction: tranId =>
+      dispatch({ type: actionTypes.REMOVE_TRANSACTION, transactionId: tranId })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TransactionsComponent);

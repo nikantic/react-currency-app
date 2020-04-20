@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import findCurrencyData from "../currency_data";
 import ExchangeArrowSVG from "../UI/ExchangeArrowSVG/ExchangeArrowSVG";
 import LoaderComponent from "../UI/LoaderComponent/LoaderComponent";
+import { connect } from "react-redux";
+import * as actionTypes from "../store/actions";
 
 class ConverterComponent extends Component {
   state = {
@@ -20,16 +22,6 @@ class ConverterComponent extends Component {
   };
 
   SaveTransactionHandler = () => {
-    this.props.saveTransaction({
-      baseCur: {
-        [this.state.baseCur.name]: parseFloat(this.state.baseInput)
-      },
-      targetCur: {
-        [this.state.targetCur.name]: parseFloat(this.state.targetInput)
-      },
-      transactionDate: new Date()
-    });
-
     this.props.addNewNotification(
       "<strong>New saved transaction:</strong> " +
         this.state.baseInput +
@@ -40,6 +32,16 @@ class ConverterComponent extends Component {
         " " +
         this.state.targetCur.name
     );
+
+    return {
+      baseCur: {
+        [this.state.baseCur.name]: parseFloat(this.state.baseInput)
+      },
+      targetCur: {
+        [this.state.targetCur.name]: parseFloat(this.state.targetInput)
+      },
+      transactionDate: new Date()
+    };
 
     // this.refs.ConverterComponentBase.classList.add("Typing");
     // setTimeout(() => {
@@ -203,7 +205,9 @@ class ConverterComponent extends Component {
         </div>
         <div
           className="ConverterComponentSaveButton"
-          onClick={this.SaveTransactionHandler}
+          onClick={() =>
+            this.props.saveTransaction(this.SaveTransactionHandler())
+          }
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -223,4 +227,14 @@ class ConverterComponent extends Component {
   }
 }
 
-export default ConverterComponent;
+const mapDispatchToProps = dispatch => {
+  return {
+    saveTransaction: transaction =>
+      dispatch({ type: actionTypes.SAVE_TRANSACTION, transaction: transaction })
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ConverterComponent);
