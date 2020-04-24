@@ -1,7 +1,8 @@
 import * as actionTypes from "./actions";
 
 const initialState = {
-  savedTransactions: []
+  savedTransactions: [],
+  notifications: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,6 +23,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         savedTransactions: []
+      };
+    case actionTypes.ADD_NOTIFICATION:
+      return {
+        ...state,
+        notifications: [action.notification, ...state.notifications]
+      };
+    case actionTypes.CLEAR_NOTIFICATIONS:
+      return {
+        ...state,
+        notifications: []
       };
     default:
       return state;

@@ -3,6 +3,7 @@ import Logo from "../Logo/Logo";
 import SidebarItem from "./SidebarItem/SidebarItem";
 import SidebarSeparator from "./SidebarSeparator/SidebarSeparator";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 const SidebarComponent = props => {
   return (
@@ -53,4 +54,13 @@ const SidebarComponent = props => {
   );
 };
 
-export default SidebarComponent;
+const mapStateToProps = state => {
+  return {
+    savedTransactions: state.savedTransactions
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(SidebarComponent);

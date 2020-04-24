@@ -230,7 +230,15 @@ class ConverterComponent extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     saveTransaction: transaction =>
-      dispatch({ type: actionTypes.SAVE_TRANSACTION, transaction: transaction })
+      dispatch({
+        type: actionTypes.SAVE_TRANSACTION,
+        transaction: transaction
+      }),
+    addNewNotification: notification =>
+      dispatch({
+        type: actionTypes.ADD_NOTIFICATION,
+        notification: notification
+      })
   };
 };
 

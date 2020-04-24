@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import NotificationItem from "./NotificationItem/NotificationItem";
 import Logo from "../Logo/Logo";
+import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions";
 // import NotificationMessages from "./notification_messages";
 
 class NotificationComponent extends Component {
@@ -161,4 +163,20 @@ class NotificationComponent extends Component {
   }
 }
 
-export default NotificationComponent;
+const mapStateToProps = state => {
+  return {
+    notifications: state.notifications
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    clearNotifications: () =>
+      dispatch({ type: actionTypes.CLEAR_NOTIFICATIONS })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NotificationComponent);
