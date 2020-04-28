@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../Logo/Logo";
 import SidebarItem from "./SidebarItem/SidebarItem";
 import SidebarSeparator from "./SidebarSeparator/SidebarSeparator";
+import SidebarToggle from "./SidebarToggle/SidebarToggle";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -21,9 +22,9 @@ const SidebarComponent = props => {
             savedTransactions={props.savedTransactions}
           />
         </NavLink>
-        <NavLink exact to="/charts">
-          <SidebarItem name="charts" label="Charts" />
-        </NavLink>
+        <SidebarItem name="charts" label="Enable Chart">
+          <SidebarToggle label="Enable Chart" />
+        </SidebarItem>
         <SidebarSeparator />
         <NavLink exact to="/settings">
           <SidebarItem name="settings" label="Settings" />

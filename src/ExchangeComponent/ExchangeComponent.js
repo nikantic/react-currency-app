@@ -10,7 +10,7 @@ import Header from "../UI/Header/Header";
 import NotificationComponent from "../UI/NotificationComponent/NotificationComponent";
 import TransactionsComponent from "../TransactionsComponent/TransactionsComponent";
 import EmptyStateComponent from "../UI/EmptyState/EmptyStateComponent";
-// import ChartsComponent from "../ChartsComponent/ChartsComponent";
+import ChartsComponent from "../ChartsComponent/ChartsComponent";
 import moment from "moment";
 import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
@@ -188,11 +188,11 @@ class ExchangeRates extends Component {
                   path="/"
                   render={props => (
                     <div>
-                      {/* <ChartsComponent
+                      <ChartsComponent
                         {...props}
                         baseData={data}
                         targetData={this.state.targetCurrency.data}
-                      /> */}
+                      />
                       <ConverterComponent
                         {...props}
                         baseCurrency={data["base"]}

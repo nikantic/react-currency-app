@@ -22,6 +22,7 @@ const SidebarItem = props => {
           {props.savedTransactions.length}
         </span>
       ) : null}
+      {props.children}
     </div>
   );
 };
