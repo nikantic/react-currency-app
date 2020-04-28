@@ -407,7 +407,7 @@ ul {
   margin-top: 43px;
 }
 
-.SidebarItemsHolder > a {
+.SidebarItemsHolder > .SidebarItemHolder {
   position: relative;
   display: block;
   text-decoration: none;
@@ -415,11 +415,12 @@ ul {
   border-left: 2px solid transparent;
 }
 
-.SidebarItemsHolder > a.active {
+.SidebarItemsHolder > .SidebarItemHolder.active {
   border-left: 2px solid #00b45d;
 }
 
-.SidebarItem {
+.SidebarItem,
+.SidebarToggle {
   position: relative;
   display: flex;
   align-items: center;
@@ -446,6 +447,47 @@ ul {
 .SidebarItem a:hover,
 .SidebarItem.Active a {
   /* background: #252525; */
+}
+
+.SidebarToggleButton {
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  top: 3px;
+  margin-left: 30px;
+  width: 44px;
+  background: #898989;
+}
+
+.SidebarToggleButton,
+.SidebarToggleButton:after {
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+
+.SidebarToggleButton:after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -3px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  background: #fff;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+}
+
+.SidebarToggle.Active .SidebarToggleButton {
+  background-color: #96d0b4;
+}
+
+.SidebarToggle.Active .SidebarToggleButton:after {
+  left: 20px;
+  background-color: #00b45d;
+}
+
+.SidebarToggle {
+  cursor: pointer;
 }
 
 .SidebarSeparator {

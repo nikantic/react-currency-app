@@ -2,7 +2,8 @@ import * as actionTypes from "./actions";
 
 const initialState = {
   savedTransactions: [],
-  notifications: []
+  notifications: [],
+  chartEnabled: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +34,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         notifications: []
+      };
+    case actionTypes.TOGGLE_CHART:
+      return {
+        ...state,
+        chartEnabled: !state.chartEnabled
       };
     default:
       return state;

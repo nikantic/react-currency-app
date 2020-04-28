@@ -5,16 +5,17 @@ import SidebarSeparator from "./SidebarSeparator/SidebarSeparator";
 import SidebarToggle from "./SidebarToggle/SidebarToggle";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions";
 
 const SidebarComponent = props => {
   return (
     <div className="SidebarHolder">
       <Logo />
       <div className="SidebarItemsHolder">
-        <NavLink exact to="/">
+        <NavLink className="SidebarItemHolder" exact to="/">
           <SidebarItem name="home" label="Home" />
         </NavLink>
-        <NavLink exact to="/transactions">
+        <NavLink className="SidebarItemHolder" exact to="/transactions">
           {" "}
           <SidebarItem
             name="trans"
@@ -22,20 +23,24 @@ const SidebarComponent = props => {
             savedTransactions={props.savedTransactions}
           />
         </NavLink>
-        <SidebarItem name="charts" label="Enable Chart">
-          <SidebarToggle label="Enable Chart" />
-        </SidebarItem>
+        <div className="SidebarItemHolder">
+          <SidebarToggle
+            addClasses={props.chartEnabled ? "Active" : ""}
+            label="Enable Chart"
+            clicked={props.toggleChart}
+          />
+        </div>
         <SidebarSeparator />
-        <NavLink exact to="/settings">
+        <NavLink className="SidebarItemHolder" exact to="/settings">
           <SidebarItem name="settings" label="Settings" />
         </NavLink>
-        <NavLink exact to="/about">
+        <NavLink className="SidebarItemHolder" exact to="/about">
           <SidebarItem name="about" label="About" />
         </NavLink>
-        <NavLink exact to="/github">
+        <NavLink className="SidebarItemHolder" exact to="/github">
           <SidebarItem name="github" label="GitHub" />
         </NavLink>
-        <NavLink exact to="/contact">
+        <NavLink className="SidebarItemHolder" exact to="/contact">
           <SidebarItem name="contact" label="Contact" />
         </NavLink>
         <a
@@ -57,11 +62,21 @@ const SidebarComponent = props => {
 
 const mapStateToProps = state => {
   return {
-    savedTransactions: state.savedTransactions
+    savedTransactions: state.savedTransactions,
+    chartEnabled: state.chartEnabled
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleChart: () =>
+      dispatch({
+        type: actionTypes.TOGGLE_CHART
+      })
   };
 };
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(SidebarComponent);

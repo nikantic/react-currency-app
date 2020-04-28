@@ -188,11 +188,13 @@ class ExchangeRates extends Component {
                   path="/"
                   render={props => (
                     <div>
-                      <ChartsComponent
-                        {...props}
-                        baseData={data}
-                        targetData={this.state.targetCurrency.data}
-                      />
+                      {this.props.chartEnabled ? (
+                        <ChartsComponent
+                          {...props}
+                          baseData={data}
+                          targetData={this.state.targetCurrency.data}
+                        />
+                      ) : null}
                       <ConverterComponent
                         {...props}
                         baseCurrency={data["base"]}
@@ -230,11 +232,6 @@ class ExchangeRates extends Component {
                     </div>
                   )}
                 />
-                {/* <Route
-                  exact
-                  path="/charts"
-                  render={props => <ChartsComponent {...props} data={data} />}
-                /> */}
                 <Route
                   path="*"
                   render={props => (
@@ -257,6 +254,12 @@ class ExchangeRates extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    chartEnabled: state.chartEnabled
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     addNewNotification: notification =>
@@ -268,6 +271,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ExchangeRates);
