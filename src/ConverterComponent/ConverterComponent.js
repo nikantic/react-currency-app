@@ -105,7 +105,7 @@ class ConverterComponent extends Component {
       // setTimeout(() => {
       //   if (this.refs.ConverterComponentBase.classList.contains("Updating")) {
       //     this.refs.ConverterComponentBase.classList.remove("Updating");
-      //     this.setState({ loading: false });
+      //     this.setState({ isLoading: false });
       //   }
       // }, 200);
       // this.refs.ConverterComponentBase.classList.add("Typing");
@@ -153,7 +153,7 @@ class ConverterComponent extends Component {
         <div
           className={
             "ConverterComponentCurrency ConverterComponentCurrencyBase " +
-            (this.props.loading ? "Updating" : "")
+            (this.props.isLoading ? "Updating" : "")
           }
         >
           <div className="ConverterComponentCurrencyTopInfo">
@@ -161,7 +161,7 @@ class ConverterComponent extends Component {
               alt={this.props.baseCurrency}
               src={this.state.baseCur["img"]}
             />
-            {this.props.loading ? (
+            {this.props.isLoading ? (
               <div className="ConverterComponentCurrencyLoader">
                 <LoaderComponent />
               </div>

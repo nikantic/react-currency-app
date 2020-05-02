@@ -18,9 +18,22 @@ class CurrencyComponent extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.props.isAnimating) {
+      const curItem = this.refs[this.props.name];
+      curItem.style.transitionDelay = "0s";
+      curItem.classList.add("isAnimating");
+    } else {
+      const curItem = this.refs[this.props.name];
+      curItem.style.transitionDelay = this.props.itemIndex * 20 + "ms";
+      curItem.classList.remove("isAnimating");
+    }
+  }
+
   render() {
     return (
       <li
+        ref={this.props.name}
         data-key={this.props.name}
         className={
           "CurrencyComponent " +

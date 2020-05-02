@@ -26,7 +26,8 @@ class ExchangeRates extends Component {
       data: []
     },
     data: [],
-    loading: false
+    isLoading: false,
+    isAnimating: false
   };
 
   constructor(props) {
@@ -50,7 +51,7 @@ class ExchangeRates extends Component {
           }
         }));
         this.animateCurrencyComponentsIn();
-        this.setState({ loading: false });
+        this.setState({ isLoading: false });
         this.props.addNewNotification(
           "<strong>New base curreny:</strong> " + this.state.baseAPICurrency
         );
@@ -87,23 +88,16 @@ class ExchangeRates extends Component {
 
   animateCurrencyComponentsIn = () => {
     setTimeout(() => {
-      document.querySelectorAll(".CurrencyComponent").forEach((item, index) => {
-        setTimeout(() => {
-          item.classList.add("Appear");
-        }, index * 20);
-      });
-    }, 100);
+      this.setState({ isAnimating: false });
+    }, 300);
   };
 
   animateCurrencyComponentsOut = () => {
-    document.querySelectorAll(".CurrencyComponent").forEach(item => {
-      item.style.transitionDelay = "0s";
-      item.classList.remove("Appear");
-    });
+    this.setState({ isAnimating: true });
   };
 
   BaseClickHandler = (e, newCurrency) => {
-    this.setState({ loading: true });
+    this.setState({ isLoading: true });
     e.stopPropagation();
     this.animateCurrencyComponentsOut();
     setTimeout(() => {
@@ -137,6 +131,7 @@ class ExchangeRates extends Component {
 
       const displayRates = (() => {
         let arr = [];
+        let index = 0;
         for (let key in rates) {
           arr.push(
             <CurrencyComponent
@@ -146,8 +141,11 @@ class ExchangeRates extends Component {
               baseCur={data["base"]}
               clickedBase={this.BaseClickHandler.bind(this)}
               clickedTarget={this.TargetClickHandler.bind(this)}
+              itemIndex={index}
+              isAnimating={this.state.isAnimating}
             />
           );
+          index++;
         }
 
         return arr;
@@ -199,7 +197,7 @@ class ExchangeRates extends Component {
                         {...props}
                         baseCurrency={data["base"]}
                         targetCurrency={this.state.targetCurrency}
-                        loading={this.state.loading}
+                        isLoading={this.state.isLoading}
                       />
                       <div className="ExchangeRatesContent">
                         <div className="ContentTopHolder">
@@ -221,7 +219,7 @@ class ExchangeRates extends Component {
                           </div>
                         </div>
                         <ul className="CurrencyComponentHolder">
-                          {this.state.loading ? (
+                          {this.state.isLoading ? (
                             <div className="CurrencyComponentHolderLoader">
                               <LoaderComponent />
                             </div>

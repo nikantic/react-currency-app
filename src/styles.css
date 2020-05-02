@@ -48,8 +48,6 @@ body {
   transition: transform 0.3s, opacity 0.5s,
     box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   background-color: #fff;
-  opacity: 0.5;
-  transform: translateY(-10px);
 }
 
 .CurrencyComponentIsBase {
@@ -57,9 +55,9 @@ body {
   border: 1px solid #fff;
 }
 
-.CurrencyComponent.Appear {
-  opacity: 1;
-  transform: translateY(0);
+.CurrencyComponent.isAnimating {
+  opacity: 0.5;
+  transform: translateY(-10px);
 }
 
 .CurrencyComponent:hover {
@@ -696,7 +694,7 @@ ul {
 .SearchComponent input {
   position: relative;
   max-width: 281px;
-  font-size: 20px;
+  font-size: 18px;
   border: none;
   margin: 0 auto;
   font-weight: 300;
