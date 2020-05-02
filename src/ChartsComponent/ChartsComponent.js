@@ -61,20 +61,20 @@ class ChartsComponent extends Component {
     let ctx = document.getElementById("my-chart").getContext("2d");
 
     let gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-    gradientStroke.addColorStop(0, "rgba(206,203,247, 1)");
-    gradientStroke.addColorStop(1, "rgba(206,203,247, 1)");
+    gradientStroke.addColorStop(0, "rgba(206,180,247, 1)");
+    gradientStroke.addColorStop(1, "rgba(206,180,247, 1)");
 
     let gradientFill = ctx.createLinearGradient(250.0, 0.0, 150.0, 500.0);
-    gradientFill.addColorStop(0, "rgba(206,203,247, 0.6)");
+    gradientFill.addColorStop(0, "rgba(206,203,247, 0.5)");
     gradientFill.addColorStop(1, "rgba(206,203,247, 0.0)");
 
     let gradientStrokeActual = ctx.createLinearGradient(500, 0, 100, 0);
-    gradientStrokeActual.addColorStop(0, "rgba(249,190,240, 1)");
-    gradientStrokeActual.addColorStop(1, "rgba(249,190,240, 1)");
+    gradientStrokeActual.addColorStop(0, "rgba(49,220,240, 1)");
+    gradientStrokeActual.addColorStop(1, "rgba(49,190,240, 1)");
 
     let gradientFillActual = ctx.createLinearGradient(250.0, 0.0, 150.0, 500.0);
-    gradientFillActual.addColorStop(0, "rgba(249,190,240, 1)");
-    gradientFillActual.addColorStop(1, "rgba(255, 255, 255, 1)");
+    gradientFillActual.addColorStop(0, "rgba(49,190,240, .5)");
+    gradientFillActual.addColorStop(1, "rgba(55, 255, 55, 1)");
 
     let chartBaseCurrencyData = separateCurrencyData(
         this.props.baseData["rates"]

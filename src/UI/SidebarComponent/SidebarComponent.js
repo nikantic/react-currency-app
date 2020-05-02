@@ -31,9 +31,6 @@ const SidebarComponent = props => {
           />
         </div>
         <SidebarSeparator />
-        <NavLink className="SidebarItemHolder" exact to="/settings">
-          <SidebarItem name="settings" label="Settings" />
-        </NavLink>
         <NavLink className="SidebarItemHolder" exact to="/about">
           <SidebarItem name="about" label="About" />
         </NavLink>

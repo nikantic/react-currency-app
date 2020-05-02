@@ -221,6 +221,7 @@ class ConverterComponent extends Component {
             <line x1="6.2" y1="16.8" x2="15.5" y2="26.1" />
             <polyline points="1,25.5 1,30.9 31,30.9 31,24.9 " />
           </svg>
+          Save transaction
         </div>
       </div>
     );
