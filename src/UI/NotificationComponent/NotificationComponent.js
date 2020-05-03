@@ -11,12 +11,12 @@ class NotificationComponent extends Component {
     notificationsNum: this.props.notifications.length,
     notificationsDisplay: this.props.notifications,
     unreadNotifications: 0,
-    open: false
+    isOpen: false
   };
 
   toggleNotificationHolder = () => {
-    this.setState({ open: !this.state.open }, () => {
-      if (this.state.open) {
+    this.setState({ isOpen: !this.state.isOpen }, () => {
+      if (this.state.isOpen) {
         document.addEventListener("mousedown", this.HandleClick, false);
         this.setState({ unreadNotifications: 0 });
       } else {
@@ -103,7 +103,7 @@ class NotificationComponent extends Component {
       <div
         ref="NotificationComponentHolder"
         className={
-          "NotificationComponentHolder " + (this.state.open ? "Open" : "")
+          "NotificationComponentHolder " + (this.state.isOpen ? "Open" : "")
         }
       >
         <div
@@ -137,23 +137,26 @@ class NotificationComponent extends Component {
           </svg>
         </div>
         <div className="NotificationComponentInnerHolder">
-          <div>
+          <div className="NotificationComponentInnerHolderTop">
             <strong>Notifications</strong>
           </div>
-          <div>{notificationItemsDisplay}</div>
+          <div className="NotificationComponentInnerHolderScroll">
+            <div>{notificationItemsDisplay}</div>
+            {this.props.notifications.length === 0 ? (
+              <div className="NotificationComponentEmptyState">
+                <p>Nothing to see here.</p>
+                <Logo onlySVG />
+              </div>
+            ) : null}
+          </div>
           {this.props.notifications.length !== 0 ? (
             <div
-              className="ClearAllButton"
+              className="ClearAllNotificationsButton"
               onClick={this.props.clearNotifications}
             >
               Clear All
             </div>
-          ) : (
-            <div className="NotificationComponentEmptyState">
-              <p>Nothing to see here.</p>
-              <Logo onlySVG />
-            </div>
-          )}
+          ) : null}
         </div>
         <div className="NotificationComponentDisplayOverlay">
           {this.state.notificationsDisplay}

@@ -54,7 +54,9 @@ class ExchangeRates extends Component {
         this.animateCurrencyComponentsIn();
         this.setState({ isLoading: false });
         this.props.addNewNotification(
-          "<strong>New base curreny:</strong> " + this.state.baseAPICurrency
+          "<div class='NotificationItemCurrency'><strong>New base curreny:</strong> " +
+            this.state.baseAPICurrency +
+            "</div>"
         );
       })
       .catch(error => console.log(error.message));

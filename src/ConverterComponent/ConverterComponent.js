@@ -23,14 +23,15 @@ class ConverterComponent extends Component {
 
   SaveTransactionHandler = () => {
     this.props.addNewNotification(
-      "<strong>New saved transaction:</strong> " +
+      "<div class='NotificationItemSaved'><strong>New saved transaction:</strong> " +
         this.state.baseInput +
         " " +
         this.state.baseCur.name +
         " &#x21C6; " +
         this.state.targetInput +
         " " +
-        this.state.targetCur.name
+        this.state.targetCur.name +
+        "</div>"
     );
 
     return {
