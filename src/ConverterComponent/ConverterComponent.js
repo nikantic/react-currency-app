@@ -181,7 +181,9 @@ class ConverterComponent extends Component {
             <span>{this.props.baseCurrency}</span>
           </div>
         </div>
-        <ExchangeArrowSVG />
+        <div className="InvertCurrenciesButton">
+          <ExchangeArrowSVG />
+        </div>
         <div className="ConverterComponentCurrency ConverterComponentCurrencyTarget">
           <div className="ConverterComponentCurrencyTopInfo">
             <img

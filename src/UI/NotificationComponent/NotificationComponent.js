@@ -150,7 +150,7 @@ class NotificationComponent extends Component {
             </div>
           ) : (
             <div className="NotificationComponentEmptyState">
-              <p>No new notifications.</p>
+              <p>Nothing to see here.</p>
               <Logo onlySVG />
             </div>
           )}

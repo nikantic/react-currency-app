@@ -279,11 +279,13 @@ body {
 .ConverterComponentInputHolder {
   position: relative;
   border-bottom: 2px solid #eaeaea;
+  display: inline-block;
+  overflow: hidden;
 }
 
 .ConverterComponentInputHolder input {
   max-width: 264px;
-  font-size: 37px;
+  font-size: 27px;
   border: none;
   margin: 0 auto;
   font-weight: 300;
@@ -291,11 +293,20 @@ body {
   padding: 13px;
   margin-right: 60px;
   margin-top: 5px;
+  transition: 0.2s;
+  max-height: 30px;
+  display: inline-block;
+  overflow: hidden;
 }
 
 .ConverterComponentInputHolder input:focus {
   outline: none;
   -webkit-appearance: none;
+  font-size: 35px;
+}
+
+.ConverterComponentInputHolder input:invalid {
+  box-shadow: none;
 }
 
 .ConverterComponentInputHolder span {
@@ -439,8 +450,10 @@ ul {
 }
 
 .SidebarItem .NotificationIconNum.Active {
+  opacity: 1;
   transform: scale(1);
   background-color: #272727;
+  transition: 0.2s 0.2s;
 }
 
 .SidebarItem a:hover,
@@ -884,7 +897,7 @@ ul {
 }
 
 .NotificationIconNum {
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 50%;
   min-width: 20px;
   height: 20px;
@@ -896,13 +909,16 @@ ul {
   right: 0;
   font-size: 14px;
   transform-origin: center;
-  transform: scale(0);
-  transition: 0.2s 0.2s;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: 0.4s;
 }
 
 .NotificationIconNum.Active {
+  opacity: 1;
   transform: scale(1);
   background-color: #ff4545;
+  transition: 0.2s 0.2s;
 }
 
 .NotificationComponentDisplayOverlay {
@@ -1025,4 +1041,17 @@ ul {
 .ChartHolder {
   padding: 27px 14px;
   margin-bottom: 20px;
+}
+
+.InvertCurrenciesButton {
+  position: relative;
+  display: inline-block;
+  top: -32px;
+  background: #fff;
+  border-radius: 100%;
+  padding: 20px;
+  cursor: pointer;
+  box-shadow: 0 -11px 20px rgba(216, 216, 216, 0.08),
+    0px 3px 4px rgba(105, 105, 105, 0.08);
+  overflow: visible;
 }

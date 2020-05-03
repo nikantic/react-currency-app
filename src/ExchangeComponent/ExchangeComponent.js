@@ -34,6 +34,7 @@ class ExchangeRates extends Component {
     super(props);
     // create a ref to store the searchInput DOM element
     this.searchInput = React.createRef();
+    this.componentHolder = React.createRef();
   }
 
   fetchAPI = newCur => {
@@ -215,10 +216,14 @@ class ExchangeRates extends Component {
                             <SearchComponent
                               searchRef={this.searchInput}
                               componentArray={componentArray}
+                              componentHolder={this.componentHolder}
                             />
                           </div>
                         </div>
-                        <ul className="CurrencyComponentHolder">
+                        <ul
+                          className="CurrencyComponentHolder"
+                          ref={this.componentHolder}
+                        >
                           {this.state.isLoading ? (
                             <div className="CurrencyComponentHolderLoader">
                               <LoaderComponent />

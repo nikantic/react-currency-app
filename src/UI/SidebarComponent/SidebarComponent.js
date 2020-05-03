@@ -21,6 +21,8 @@ const SidebarComponent = props => {
             name="trans"
             label="My Transactions"
             savedTransactions={props.savedTransactions}
+            unreadSaved={props.unreadSaved}
+            clicked={props.resetUnreadSaved}
           />
         </NavLink>
         <div className="SidebarItemHolder">
@@ -60,6 +62,7 @@ const SidebarComponent = props => {
 const mapStateToProps = state => {
   return {
     savedTransactions: state.savedTransactions,
+    unreadSaved: state.unreadSaved,
     chartEnabled: state.chartEnabled
   };
 };
@@ -69,6 +72,10 @@ const mapDispatchToProps = dispatch => {
     toggleChart: () =>
       dispatch({
         type: actionTypes.TOGGLE_CHART
+      }),
+    resetUnreadSaved: () =>
+      dispatch({
+        type: actionTypes.RESET_UNREAD_SAVED
       })
   };
 };

@@ -19,7 +19,7 @@ class SearchComponent extends Component {
   };
 
   prependFoundComponent = dataKey => {
-    let componentHolderEl = document.querySelector(".CurrencyComponentHolder");
+    let componentHolderEl = this.props.componentHolder.current;
     componentHolderEl
       .querySelectorAll(".CurrencyComponent")
       .forEach((item, index) => {

@@ -2,6 +2,7 @@ import * as actionTypes from "./actions";
 
 const initialState = {
   savedTransactions: [],
+  unreadSaved: 0,
   notifications: [],
   chartEnabled: true
 };
@@ -11,6 +12,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SAVE_TRANSACTION:
       return {
         ...state,
+        unreadSaved: state.unreadSaved + 1,
         savedTransactions: [action.transaction, ...state.savedTransactions]
       };
     case actionTypes.REMOVE_TRANSACTION:
@@ -19,6 +21,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         savedTransactions: savedTransactionArr
+      };
+    case actionTypes.RESET_UNREAD_SAVED:
+      return {
+        ...state,
+        unreadSaved: 0
       };
     case actionTypes.CLEAR_TRANSACTIONS:
       return {
