@@ -182,7 +182,15 @@ class ConverterComponent extends Component {
             <span>{this.props.baseCurrency}</span>
           </div>
         </div>
-        <div className="InvertCurrenciesButton">
+        <div
+          className="InvertCurrenciesButton"
+          onClick={() =>
+            this.props.InvertCurrencies(
+              this.props.baseCurrency,
+              this.props.targetCurrency["name"]
+            )
+          }
+        >
           <ExchangeArrowSVG />
         </div>
         <div className="ConverterComponentCurrency ConverterComponentCurrencyTarget">

@@ -37,20 +37,23 @@ class ExchangeRates extends Component {
     this.componentHolder = React.createRef();
   }
 
-  fetchAPI = newCur => {
+  fetchAPI = (newCur, callback) => {
     const url = "https://api.exchangeratesapi.io/latest?base=" + newCur;
 
     fetch(url)
       .then(result => result.json())
       .then(result => {
-        this.setState(prevState => ({
-          baseAPICurrency: newCur,
-          data: result,
-          targetCurrency: {
-            ...prevState.targetCurrency,
-            value: result["rates"][this.state.targetCurrency.name]
-          }
-        }));
+        this.setState(
+          prevState => ({
+            baseAPICurrency: newCur,
+            data: result,
+            targetCurrency: {
+              ...prevState.targetCurrency,
+              value: result["rates"][this.state.targetCurrency.name]
+            }
+          }),
+          callback && typeof callback === "function" && callback
+        );
         this.animateCurrencyComponentsIn();
         this.setState({ isLoading: false });
         this.props.addNewNotification(
@@ -89,6 +92,12 @@ class ExchangeRates extends Component {
     this.fetchTargetAPI(this.state.targetCurrency["name"]);
   }
 
+  componentWillReceiveProps() {
+    // Optimized so no target data fetching occurs when chart is disabled
+    !this.props.chartEnabled &&
+      this.fetchTargetAPI(this.state.targetCurrency["name"]);
+  }
+
   animateCurrencyComponentsIn = () => {
     setTimeout(() => {
       this.setState({ isAnimating: false });
@@ -99,32 +108,40 @@ class ExchangeRates extends Component {
     this.setState({ isAnimating: true });
   };
 
-  BaseClickHandler = (e, newCurrency) => {
+  BaseClickHandler = (e, newCurrency, callback) => {
+    e && e.stopPropagation();
     this.setState({ isLoading: true });
-    e.stopPropagation();
     this.animateCurrencyComponentsOut();
     setTimeout(() => {
       this.scrollToTop();
     }, 100);
     setTimeout(() => {
-      this.fetchAPI(newCurrency);
+      this.fetchAPI(newCurrency, callback);
     }, 300);
     this.searchInput.current.value = "";
   };
 
-  TargetClickHandler = (e, newCurrency, newValue) => {
-    e.stopPropagation();
+  TargetClickHandler = (e, newCurrency) => {
+    e && e.stopPropagation();
     this.setState(prevState => ({
       targetCurrency: {
         ...prevState.targetCurrency,
         name: newCurrency,
-        value: newValue
+        value: this.state.data["rates"][newCurrency]
       }
     }));
     this.scrollToTop();
-    setTimeout(() => {
-      this.fetchTargetAPI(this.state.targetCurrency["name"]);
-    }, 0);
+    this.props.chartEnabled &&
+      setTimeout(
+        () => this.fetchTargetAPI(this.state.targetCurrency["name"]),
+        10
+      );
+  };
+
+  InvertCurrenciesHandler = (baseCurrency, targetCurrency) => {
+    this.BaseClickHandler(null, targetCurrency, () =>
+      this.TargetClickHandler(null, baseCurrency)
+    );
   };
 
   render() {
@@ -200,6 +217,9 @@ class ExchangeRates extends Component {
                         {...props}
                         baseCurrency={data["base"]}
                         targetCurrency={this.state.targetCurrency}
+                        InvertCurrencies={this.InvertCurrenciesHandler.bind(
+                          this
+                        )}
                         isLoading={this.state.isLoading}
                       />
                       <div className="ExchangeRatesContent">

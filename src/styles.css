@@ -96,7 +96,8 @@ body {
 
 .CurrencyComponentLeftSide img {
   max-height: 100%;
-  max-width: 60%;
+  width: 64px;
+  height: 64px;
 }
 
 .CurrencyComponentRightSide {
@@ -251,16 +252,23 @@ body {
   transition: 0s;
 }
 
+.ConverterComponentCurrencyTarget .ConverterComponentCurrencyTopInfo img {
+  border: 2px solid #ceb4f7;
+}
+
 .ConverterComponentCurrencyTopInfo {
   display: flex;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .ConverterComponentCurrencyTopInfo img {
-  width: 89px;
+  width: 77px;
+  height: 77px;
   padding: 8px;
   box-sizing: border-box;
+  border: 2px solid #6cdec0;
+  border-radius: 50%;
 }
 
 .ConverterComponentCurrencyTopInfoContent {
@@ -493,7 +501,7 @@ ul {
 
 .SidebarToggle.Active .SidebarToggleButton {
   background: #32cec1;
-  border: 1px solid #00b45d;
+  border: 1px solid #32cec1;
   transition: 0.3s 0.1s;
 }
 
@@ -984,10 +992,6 @@ ul {
   pointer-events: none;
 }
 
-.CurrencyComponentTransactionItem .CurrencyComponentLeftSide img {
-  max-width: 48%;
-}
-
 .TransactionItem > svg {
   position: relative;
   top: -15px;
@@ -1085,4 +1089,20 @@ ul {
   box-shadow: 0 -11px 20px rgba(216, 216, 216, 0.08),
     0px 3px 4px rgba(105, 105, 105, 0.08);
   overflow: visible;
+}
+
+.InvertCurrenciesButton svg {
+  overflow: visible;
+}
+
+.InvertCurrenciesButton svg g path {
+  transition: transform 0.2s;
+}
+
+.InvertCurrenciesButton:hover svg path:nth-child(1) {
+  transform: translateX(-40px);
+}
+
+.InvertCurrenciesButton:hover svg path:nth-child(2) {
+  transform: translateX(40px);
 }

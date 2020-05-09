@@ -66,9 +66,7 @@ class CurrencyComponent extends Component {
           </small>
           <span
             className="CurrencyComponentRightSideButton"
-            onClick={e =>
-              this.props.clickedTarget(e, this.props.name, this.props.value)
-            }
+            onClick={e => this.props.clickedTarget(e, this.props.name)}
           >
             Set as target
           </span>
