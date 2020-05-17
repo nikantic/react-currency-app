@@ -15,7 +15,7 @@ const separateCurrencyData = rates => {
 
 const options = {
   animation: {
-    easing: "easeInOutBack"
+    easing: "easeInOutExpo"
   },
   scales: {
     yAxes: [
@@ -92,11 +92,6 @@ class ChartsComponent extends Component {
             label: "Values in " + this.state.baseCur,
             borderColor: gradientStrokeActual,
             backgroundColor: gradientFillActual,
-            // borderColor: "rgb(0, 150, 93)",
-            // pointBorderWidth: 10,
-            // pointHoverRadius: 10,
-            // pointHoverBorderWidth: 1,
-            // pointRadius: 0.4,
             fill: true,
             borderWidth: 2
           },
@@ -105,10 +100,6 @@ class ChartsComponent extends Component {
             label: "Values in " + this.state.targetCur,
             borderColor: gradientStroke,
             backgroundColor: gradientFill,
-            // pointBorderWidth: 10,
-            // pointHoverRadius: 10,
-            // pointHoverBorderWidth: 1,
-            // pointRadius: 0.4,
             fill: true,
             borderWidth: 2
           }

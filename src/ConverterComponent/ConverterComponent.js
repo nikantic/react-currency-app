@@ -17,18 +17,24 @@ class ConverterComponent extends Component {
       img: "../assets/img/" + this.props.targetCurrency["name"] + ".png",
       other: findCurrencyData(this.props.targetCurrency["name"])
     },
-    baseInput: 1,
-    targetInput: this.props.targetCurrency["value"]
+    baseInput: {
+      raw: 1,
+      formatted: 1
+    },
+    targetInput: {
+      raw: this.props.targetCurrency["value"],
+      formatted: this.props.targetCurrency["value"]
+    }
   };
 
   SaveTransactionHandler = () => {
     this.props.addNewNotification(
       "<div class='NotificationItemSaved'><strong>New saved transaction:</strong> " +
-        this.state.baseInput +
+        this.state.baseInput.formatted +
         " " +
         this.state.baseCur.name +
         " &#x21C6; " +
-        this.state.targetInput +
+        this.state.targetInput.formatted +
         " " +
         this.state.targetCur.name +
         "</div>"
@@ -36,10 +42,10 @@ class ConverterComponent extends Component {
 
     return {
       baseCur: {
-        [this.state.baseCur.name]: parseFloat(this.state.baseInput)
+        [this.state.baseCur.name]: this.state.baseInput.formatted
       },
       targetCur: {
-        [this.state.targetCur.name]: parseFloat(this.state.targetInput)
+        [this.state.targetCur.name]: this.state.targetInput.formatted
       },
       transactionDate: new Date()
     };
@@ -60,45 +66,80 @@ class ConverterComponent extends Component {
 
   CalcNewValues = keyName => {
     if (keyName === "baseInput") {
-      this.setState({
-        targetInput: parseFloat(
-          (this.state.baseInput * this.props.targetCurrency["value"]).toFixed(2)
+      const newTargetRawValue = parseFloat(
+        (this.state.baseInput.raw * this.props.targetCurrency["value"]).toFixed(
+          2
         )
+      );
+      const newTargetFormattedValue = this.FormatCurrency(
+        newTargetRawValue.toString()
+      );
+      this.setState({
+        targetInput: {
+          raw: newTargetRawValue,
+          formatted: newTargetFormattedValue
+        }
       });
     } else if (keyName === "targetInput") {
+      const newBaseRawValue = parseFloat(
+        (
+          this.state.targetInput.raw / this.props.targetCurrency["value"]
+        ).toFixed(2)
+      );
+      const newBaseFormattedValue = this.FormatCurrency(
+        newBaseRawValue.toString()
+      );
       this.setState({
-        baseInput: parseFloat(
-          (this.state.targetInput / this.props.targetCurrency["value"]).toFixed(
-            2
-          )
-        )
+        baseInput: {
+          raw: newBaseRawValue,
+          formatted: newBaseFormattedValue
+        }
       });
     }
   };
 
   ChangeHandler = event => {
-    if (event.target.value >= 0) {
+    const inputText = event.target.value,
+      rawInputNumber = parseFloat(inputText.replace(/,/g, "")),
+      inputName = event.target.name,
+      isInputNumber = inputText === "" ? true : !Number.isNaN(rawInputNumber);
+
+    if (isInputNumber) {
+      // Animations
       if (event.target.name !== "baseInput") {
-        // this.refs.ConverterComponentBase.classList.add("Typing");
-        // setTimeout(() => {
-        //   if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
-        //     this.refs.ConverterComponentBase.classList.remove("Typing");
-        //   }
-        // }, 700);
+        this.refs.ConverterComponentBase.classList.add("Typing");
+        setTimeout(() => {
+          if (this.refs.ConverterComponentBase.classList.contains("Typing")) {
+            this.refs.ConverterComponentBase.classList.remove("Typing");
+          }
+        }, 700);
       } else {
-        // this.refs.ConverterComponentTarget.classList.add("Typing");
-        // setTimeout(() => {
-        //   if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
-        //     this.refs.ConverterComponentTarget.classList.remove("Typing");
-        //   }
-        // }, 700);
+        this.refs.ConverterComponentTarget.classList.add("Typing");
+        setTimeout(() => {
+          if (this.refs.ConverterComponentTarget.classList.contains("Typing")) {
+            this.refs.ConverterComponentTarget.classList.remove("Typing");
+          }
+        }, 700);
       }
-      const inputName = event.target.name;
-      this.setState({ [inputName]: event.target.value }, () => {
-        this.CalcNewValues(inputName);
-      });
+
+      const formattedNumber = this.FormatCurrency(inputText);
+      this.setState(
+        {
+          [inputName]: {
+            raw: rawInputNumber,
+            formatted: formattedNumber
+          }
+        },
+        () => {
+          this.CalcNewValues(inputName);
+        }
+      );
     }
   };
+
+  componentDidMount() {
+    this.CalcNewValues("baseInput");
+  }
 
   componentDidUpdate() {
     // base currency update
@@ -127,7 +168,7 @@ class ConverterComponent extends Component {
     //   }, 700);
     // }
 
-    // update input values in case currencies props change
+    // update input values if currencies props change
     if (
       this.state.baseCur["name"] !== this.props.baseCurrency ||
       this.state.targetCur["name"] !== this.props.targetCurrency["name"]
@@ -148,10 +189,32 @@ class ConverterComponent extends Component {
     }
   }
 
+  FormatNumber = inputText => {
+    return inputText.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  FormatCurrency = inputText => {
+    if (inputText.indexOf(".") >= 0) {
+      let decimalPos = inputText.indexOf("."),
+        leftSide = inputText.substring(0, decimalPos),
+        rightSide = inputText.substring(decimalPos);
+
+      leftSide = this.FormatNumber(leftSide);
+      rightSide = this.FormatNumber(rightSide);
+
+      rightSide = rightSide.substring(0, 2);
+      inputText = leftSide + "." + rightSide;
+    } else {
+      inputText = this.FormatNumber(inputText);
+    }
+    return inputText;
+  };
+
   render() {
     return (
       <div className="ConverterComponent">
         <div
+          ref="ConverterComponentBase"
           className={
             "ConverterComponentCurrency ConverterComponentCurrencyBase " +
             (this.props.isLoading ? "Updating" : "")
@@ -174,9 +237,11 @@ class ConverterComponent extends Component {
           </div>
           <div className="ConverterComponentInputHolder">
             <input
-              type="number"
+              type="text"
               name="baseInput"
-              value={this.state.baseInput}
+              ref="ConverterComponentBaseInput"
+              pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+              value={this.state.baseInput.formatted}
               onChange={this.ChangeHandler}
             />
             <span>{this.props.baseCurrency}</span>
@@ -193,7 +258,10 @@ class ConverterComponent extends Component {
         >
           <ExchangeArrowSVG />
         </div>
-        <div className="ConverterComponentCurrency ConverterComponentCurrencyTarget">
+        <div
+          ref="ConverterComponentTarget"
+          className="ConverterComponentCurrency ConverterComponentCurrencyTarget"
+        >
           <div className="ConverterComponentCurrencyTopInfo">
             <img
               alt={this.props.targetCurrency["name"]}
@@ -206,9 +274,11 @@ class ConverterComponent extends Component {
           </div>
           <div className="ConverterComponentInputHolder">
             <input
-              type="number"
+              type="text"
               name="targetInput"
-              value={this.state.targetInput}
+              ref="ConverterComponentTargetInput"
+              value={this.state.targetInput.formatted}
+              pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
               onChange={this.ChangeHandler}
             />
             <span>{this.props.targetCurrency["name"]}</span>

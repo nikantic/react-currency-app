@@ -56,7 +56,9 @@ class CurrencyComponent extends Component {
             </span>
           </div>
           <span className="CurrencyComponentRightSideValue">
-            {this.props.value.toFixed(3)}{" "}
+            {Number.isNaN(this.props.value)
+              ? this.props.value.toFixed(3)
+              : this.props.value}{" "}
             {this.props.baseCur ? (
               <small>(1 {this.props.baseCur})</small>
             ) : null}

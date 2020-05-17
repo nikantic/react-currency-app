@@ -1,9 +1,8 @@
 #Todo - react-currency-app
 
 // FIXES
-add invert bases, highlight new transaction items, fix clear all button empty space on clear
 fix notifications timeout bug
-converter component too many refs and resets input value on save or on route change - google inputs reset on route change
+perhaps remember state when component will unmount (reseting inputs fix)
 
 // FINAL polish
 
