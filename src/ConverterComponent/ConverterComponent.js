@@ -17,10 +17,7 @@ class ConverterComponent extends Component {
       img: "../assets/img/" + this.props.targetCurrency["name"] + ".png",
       other: findCurrencyData(this.props.targetCurrency["name"])
     },
-    baseInput: {
-      raw: 1,
-      formatted: 1
-    },
+    baseInput: this.props.baseInputStore,
     targetInput: {
       raw: this.props.targetCurrency["value"],
       formatted: this.props.targetCurrency["value"]
@@ -139,6 +136,10 @@ class ConverterComponent extends Component {
 
   componentDidMount() {
     this.CalcNewValues("baseInput");
+  }
+
+  componentWillUnmount() {
+    this.props.saveInput(this.state.baseInput);
   }
 
   componentDidUpdate() {
@@ -309,6 +310,12 @@ class ConverterComponent extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    baseInputStore: state.baseInput
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     saveTransaction: transaction =>
@@ -320,11 +327,16 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: actionTypes.ADD_NOTIFICATION,
         notification: notification
+      }),
+    saveInput: input =>
+      dispatch({
+        type: actionTypes.SAVE_INPUT,
+        input: input
       })
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ConverterComponent);

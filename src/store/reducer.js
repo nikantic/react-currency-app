@@ -3,6 +3,10 @@ import * as actionTypes from "./actions";
 const initialState = {
   savedTransactions: [],
   unreadSaved: 0,
+  baseInput: {
+    raw: 1,
+    formatted: 1
+  },
   notifications: [],
   chartEnabled: true
 };
@@ -46,6 +50,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         chartEnabled: !state.chartEnabled
+      };
+    case actionTypes.SAVE_INPUT:
+      return {
+        ...state,
+        baseInput: action.input
       };
     default:
       return state;

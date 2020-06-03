@@ -2,7 +2,6 @@
 
 // FIXES
 fix notifications timeout bug
-perhaps remember state when component will unmount (reseting inputs fix)
 
 // FINAL polish
 
