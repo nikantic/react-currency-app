@@ -14,6 +14,11 @@ class NotificationComponent extends Component {
     isOpen: false
   };
 
+  constructor(props) {
+    super(props);
+    this.notificationTimeout = null;
+  }
+
   toggleNotificationHolder = () => {
     this.setState({ isOpen: !this.state.isOpen }, () => {
       if (this.state.isOpen) {
@@ -55,7 +60,7 @@ class NotificationComponent extends Component {
         let newNotificationItem = (
           <NotificationItem
             disappear
-            key={this.state.unreadNotifications + 1}
+            key={this.state.unreadNotifications + new Date().getTime()}
             content={this.props.notifications[0]}
           />
         );
@@ -68,7 +73,8 @@ class NotificationComponent extends Component {
             ]
           },
           () => {
-            setTimeout(() => {
+            clearTimeout(this.notificationTimeout);
+            this.notificationTimeout = setTimeout(() => {
               let notificationArray = [...this.state.notificationsDisplay];
               notificationArray.splice(notificationArray.length - 1, 1);
               this.setState({ notificationsDisplay: notificationArray });
