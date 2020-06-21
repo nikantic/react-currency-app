@@ -663,10 +663,6 @@ ul {
   padding: 20px 15px;
 }
 
-.NotificationItem .NotificationItemCurrency {
-  background: #f0fffe;
-}
-
 .NotificationItem.Disappear {
   animation: notification-disappear 8s cubic-bezier(0.04, 0.68, 0.25, 1)
     forwards !important;
