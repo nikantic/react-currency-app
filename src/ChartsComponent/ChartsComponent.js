@@ -14,6 +14,7 @@ const separateCurrencyData = rates => {
 };
 
 const options = {
+  maintainAspectRatio: false,
   animation: {
     easing: "easeInOutExpo"
   },
@@ -130,7 +131,7 @@ class ChartsComponent extends Component {
         <Line
           id="my-chart"
           data={this.state.chartData}
-          height={50}
+          height={270}
           options={options}
         />
       </div>
