@@ -196,7 +196,9 @@ body {
 .ConverterComponent {
   position: relative;
   box-sizing: border-box;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #fff;
   z-index: 1;
   border-top: 1px solid #f3f3f3;
@@ -213,6 +215,8 @@ body {
   box-sizing: border-box;
   box-shadow: 1px 3px 18px 0px #ececec;
   padding: 26px;
+  margin-bottom: 75px;
+  width: 429px;
 }
 
 .ConverterComponentCurrency:after {
@@ -290,10 +294,11 @@ body {
   border-bottom: 2px solid #eaeaea;
   display: inline-block;
   overflow: hidden;
+  width: 100%;
 }
 
 .ConverterComponentInputHolder input {
-  max-width: 264px;
+  max-width: 80%;
   font-size: 27px;
   border: none;
   margin: 0 auto;
@@ -810,8 +815,7 @@ ul {
 
 .ConverterComponentSaveButton {
   position: absolute;
-  left: 68%;
-  top: 89%;
+  top: 91%;
   display: flex;
   align-items: center;
   padding: 20px;

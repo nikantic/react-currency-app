@@ -32,7 +32,9 @@ class BackToTop extends Component {
   };
 
   componentDidMount() {
-    this.BackToTopAppear();
+    setTimeout(() => {
+      this.BackToTopAppear();
+    }, 300);
   }
 
   render() {
