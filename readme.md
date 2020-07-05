@@ -2,7 +2,7 @@
 
 // FINAL polish
 
-- mobile responsive - hover states
+- mobile responsive - hover states, scroll to top on saveTransaction, notification panel on responsive
 - custom font, design, watch out for white space
 - code review
 

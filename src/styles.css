@@ -1114,6 +1114,7 @@ ul {
   width: 40px;
   height: 24px;
   margin-left: 30px;
+  display: none;
 }
 
 .SidebarOpenerInner {
@@ -1147,9 +1148,13 @@ ul {
 }
 
 @media (max-width: 1230px) {
+  .SidebarOpener {
+    display: block;
+  }
+
   .SidebarHolder {
     position: fixed;
-    z-index: 123;
+    z-index: 1100;
     transform: translateX(-101%);
     pointer-events: none;
     width: 400px;
@@ -1162,5 +1167,62 @@ ul {
   .SidebarHolder.SidebarOpened {
     transform: translateX(0);
     pointer-events: all;
+  }
+}
+
+@media (max-width: 768px) {
+  .ConverterComponent {
+    flex-direction: column;
+  }
+
+  .ConverterComponentCurrency {
+    max-width: 87%;
+  }
+
+  .ConverterComponentCurrencyTarget {
+    margin-top: 5px;
+    margin-bottom: 95px;
+  }
+
+  .ConverterComponentSaveButton {
+    top: 94%;
+  }
+
+  .ContentTopHolder {
+    margin-top: 32px;
+  }
+
+  .CurrencyComponentHolder {
+    padding-left: 0;
+  }
+
+  .Header > h1 {
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 720px) {
+  .Header > h1 {
+    font-size: 25px;
+  }
+
+  .CurrencyComponentHolder {
+    text-align: center;
+  }
+
+  .CurrencyComponent {
+    max-width: none;
+  }
+
+  .ContentTopHolder {
+    flex-direction: column;
+  }
+
+  .ContentTopHolder > div {
+    width: 94%;
+  }
+
+  .SearchComponent {
+    width: 100%;
   }
 }
