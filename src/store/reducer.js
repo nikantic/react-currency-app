@@ -8,7 +8,8 @@ const initialState = {
     formatted: 1
   },
   notifications: [],
-  chartEnabled: true
+  chartEnabled: true,
+  isSidebarOpen: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -50,6 +51,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         chartEnabled: !state.chartEnabled
+      };
+    case actionTypes.TOGGLE_SIDEBAR:
+      return {
+        ...state,
+        isSidebarOpen: !state.isSidebarOpen
       };
     case actionTypes.SAVE_INPUT:
       return {

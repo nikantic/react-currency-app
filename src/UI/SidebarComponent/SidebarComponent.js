@@ -9,7 +9,11 @@ import * as actionTypes from "../../store/actions";
 
 const SidebarComponent = props => {
   return (
-    <div className="SidebarHolder">
+    <div
+      className={
+        "SidebarHolder" + (props.isSidebarOpen ? " SidebarOpened" : "")
+      }
+    >
       <Logo />
       <div className="SidebarItemsHolder">
         <NavLink className="SidebarItemHolder" exact to="/">
@@ -63,7 +67,8 @@ const mapStateToProps = state => {
   return {
     savedTransactions: state.savedTransactions,
     unreadSaved: state.unreadSaved,
-    chartEnabled: state.chartEnabled
+    chartEnabled: state.chartEnabled,
+    isSidebarOpen: state.isSidebarOpen
   };
 };
 

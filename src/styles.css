@@ -41,6 +41,7 @@ body {
   box-sizing: border-box;
   margin: 16px 12px;
   width: 270px;
+  max-width: 30%;
   height: 122px;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -217,6 +218,7 @@ body {
   padding: 26px;
   margin-bottom: 75px;
   width: 429px;
+  max-width: 37%;
 }
 
 .ConverterComponentCurrency:after {
@@ -982,6 +984,7 @@ ul {
 
 .CurrencyComponentTransactionItem {
   width: 329px;
+  max-width: none;
   height: 122px;
   box-shadow: none;
   background: none;
@@ -1103,4 +1106,61 @@ ul {
 
 .InvertCurrenciesButton:hover svg path:nth-child(2) {
   transform: translateX(40px);
+}
+
+.SidebarOpener {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  margin-left: 30px;
+}
+
+.SidebarOpenerInner {
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 4px;
+  background-color: #000;
+  margin-top: -2px;
+}
+
+.SidebarOpenerInner:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 40px;
+  height: 4px;
+  display: block;
+  background-color: #000;
+}
+
+.SidebarOpenerInner:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  width: 40px;
+  height: 4px;
+  display: block;
+  background-color: #000;
+}
+
+@media (max-width: 1230px) {
+  .SidebarHolder {
+    position: fixed;
+    z-index: 123;
+    transform: translateX(-101%);
+    pointer-events: none;
+    width: 400px;
+    max-width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    transition: transform 0.5s cubic-bezier(0.59, 0.07, 0.11, 0.98);
+  }
+
+  .SidebarHolder.SidebarOpened {
+    transform: translateX(0);
+    pointer-events: all;
+  }
 }
