@@ -568,7 +568,7 @@ ul {
 
 .NotificationComponentHolder {
   position: absolute;
-  right: 50px;
+  right: 20px;
 }
 
 .NotificationComponentHolder.Open .NotificationComponentInnerHolder {
@@ -1224,5 +1224,18 @@ ul {
 
   .SearchComponent {
     width: 100%;
+  }
+
+  .NotificationComponentInnerHolder {
+    position: fixed;
+    width: calc(100vw - 24px);
+    border-radius: 0;
+    right: 12px;
+    top: 103px;
+    height: calc(100vh - 165px);
+  }
+
+  .NotificationComponentEmptyState p {
+    text-align: center;
   }
 }
