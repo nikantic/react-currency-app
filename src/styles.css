@@ -110,6 +110,7 @@ body {
   padding: 10px;
   margin-top: -2px;
   box-sizing: border-box;
+  align-items: baseline;
 }
 
 .CurrencyComponentRightSide .CurrencyComponentRightSideValue {
@@ -983,7 +984,7 @@ ul {
 }
 
 .CurrencyComponentTransactionItem {
-  width: 329px;
+  width: 319px;
   max-width: none;
   height: 122px;
   box-shadow: none;
@@ -1237,5 +1238,25 @@ ul {
 
   .NotificationComponentEmptyState p {
     text-align: center;
+  }
+
+  .TransactionItem {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .TransactionItem > svg {
+    top: 0;
+    margin-left: 60px;
+    transform: rotate(90deg);
+  }
+
+  .TransactionItemDate {
+    left: 0;
+  }
+
+  .TransactionItemRemove {
+    left: 60%;
+    bottom: 46%;
   }
 }
