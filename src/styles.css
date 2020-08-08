@@ -49,6 +49,7 @@ body {
   transition: transform 0.3s, opacity 0.5s,
     box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   background-color: #fff;
+  overflow: hidden;
 }
 
 .CurrencyComponentIsBase {
@@ -569,7 +570,7 @@ ul {
 
 .NotificationComponentHolder {
   position: absolute;
-  right: 20px;
+  right: 50px;
 }
 
 .NotificationComponentHolder.Open .NotificationComponentInnerHolder {
@@ -619,6 +620,7 @@ ul {
   pointer-events: none;
   height: 520px;
   z-index: 123;
+  overflow: hidden;
 }
 
 .NotificationComponentInnerHolderTop {
@@ -726,6 +728,7 @@ ul {
   text-align: center;
   cursor: pointer;
   z-index: 123;
+  background-color: #fff;
 }
 
 .NotificationComponentHolder .LogoOnlySVG > div {
@@ -1018,6 +1021,7 @@ ul {
   height: 155px;
   background: #fff;
   border-top: 1px solid #f3f3f3;
+  overflow: hidden;
 }
 
 .EmptyStateComponent p {
@@ -1049,9 +1053,13 @@ ul {
   opacity: 0.3;
 }
 
+.TransactionItemsHolder {
+  overflow: hidden;
+}
+
 .TransactionItemDate {
   position: absolute;
-  left: 300px;
+  left: 289px;
   padding: 8px 13px;
   background-color: #f9f9f9;
   color: #2b2b2b;
@@ -1200,11 +1208,15 @@ ul {
   .Header > h1 {
     margin-left: 30px;
   }
+
+  .NotificationComponentHolder {
+    right: 30px;
+  }
 }
 
 @media (max-width: 720px) {
   .Header > h1 {
-    font-size: 25px;
+    font-size: 22px;
   }
 
   .CurrencyComponentHolder {
@@ -1252,11 +1264,18 @@ ul {
   }
 
   .TransactionItemDate {
-    left: 0;
+    left: auto;
+    right: 0;
   }
 
   .TransactionItemRemove {
     left: 60%;
     bottom: 46%;
+  }
+
+  .SidebarItemsHolder .SidebarSmallText {
+    position: relative;
+    bottom: -30px;
+    padding-bottom: 50px;
   }
 }
