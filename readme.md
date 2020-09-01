@@ -18,7 +18,7 @@ Code Sandbox - https://codesandbox.io/s/react-currency-app-ixglr
 
 ## Screenshot
 
-![app_screen](https://raw.githubusercontent.com/nikantic/react-currency-app/master/public/app_screen.jpg)
+![app_screen](https://raw.githubusercontent.com/nikantic/react-currency-app/master/app_screen.jpg)
 
 
 // FINAL todo remaining...
