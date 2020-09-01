@@ -1,11 +1,8 @@
 #Todo - react-currency-app
 
-// FINAL polish
+// FINAL todo
 
-- mobile responsive - hover states, scroll to top on saveTransaction, notification panel on responsive
-- custom font, design, watch out for white space
+- custom font, check design - watch out for white space
 - code review
-
-// DOCUMENTATION
-// description (react dashboard SPA with Redux)
-// credits - flat icons, api
+- documentation and pages (react dashboard SPA with Redux)
+- credits - flat icons, api
