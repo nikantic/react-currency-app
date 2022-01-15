@@ -14,6 +14,7 @@ import ChartsComponent from "../ChartsComponent/ChartsComponent";
 import moment from "moment";
 import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
+import responseData from '../res_sample.json'
 
 import "../styles.css";
 
@@ -38,31 +39,26 @@ class ExchangeRates extends Component {
   }
 
   fetchAPI = (newCur, callback) => {
-    const url = "https://api.exchangeratesapi.io/latest?base=" + newCur;
+    responseData.base = newCur;
 
-    fetch(url)
-      .then(result => result.json())
-      .then(result => {
-        this.setState(
-          prevState => ({
-            baseAPICurrency: newCur,
-            data: result,
-            targetCurrency: {
-              ...prevState.targetCurrency,
-              value: result["rates"][this.state.targetCurrency.name]
-            }
-          }),
-          callback && typeof callback === "function" && callback
-        );
-        this.animateCurrencyComponentsIn();
-        this.setState({ isLoading: false });
-        this.props.addNewNotification(
-          "<div class='NotificationItemCurrency'><strong>New base curreny:</strong> " +
-            this.state.baseAPICurrency +
-            "</div>"
-        );
-      })
-      .catch(error => console.log(error.message));
+    this.setState(
+      prevState => ({
+        baseAPICurrency: newCur,
+        data: responseData,
+        targetCurrency: {
+          ...prevState.targetCurrency,
+          value: responseData["rates"][this.state.targetCurrency.name]
+        }
+      }),
+      callback && typeof callback === "function" && callback
+    );
+    this.animateCurrencyComponentsIn();
+    this.setState({ isLoading: false });
+    this.props.addNewNotification(
+      "<div class='NotificationItemCurrency'><strong>New base curreny:</strong> " +
+      this.state.baseAPICurrency +
+      "</div>"
+    );
   };
 
   fetchTargetAPI = newCur => {
