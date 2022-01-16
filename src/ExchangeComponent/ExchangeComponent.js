@@ -62,19 +62,12 @@ class ExchangeRates extends Component {
   };
 
   fetchTargetAPI = newCur => {
-    const url = "https://api.exchangeratesapi.io/latest?base=" + newCur;
-
-    fetch(url)
-      .then(result => result.json())
-      .then(result => {
-        this.setState(prevState => ({
-          targetCurrency: {
-            ...prevState.targetCurrency,
-            data: result
-          }
-        }));
-      })
-      .catch(error => console.log(error.message));
+    this.setState(prevState => ({
+      targetCurrency: {
+        ...prevState.targetCurrency,
+        data: responseData
+      }
+    }));
   };
 
   scrollToTop = () => {
