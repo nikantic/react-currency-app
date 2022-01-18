@@ -53,12 +53,13 @@ class ExchangeRates extends Component {
       callback && typeof callback === "function" && callback
     );
     this.animateCurrencyComponentsIn();
-    this.setState({ isLoading: false });
-    this.props.addNewNotification(
-      "<div class='NotificationItemCurrency'><strong>New base curreny:</strong> " +
-      this.state.baseAPICurrency +
-      "</div>"
-    );
+    this.setState({ isLoading: false }, () => {
+      this.props.addNewNotification(
+        "<div class='NotificationItemCurrency'><strong>New base curreny:</strong> " +
+        this.state.baseAPICurrency +
+        "</div>"
+      );
+    });
   };
 
   fetchTargetAPI = newCur => {
