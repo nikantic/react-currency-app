@@ -37,15 +37,12 @@ const SidebarComponent = props => {
           />
         </div>
         <SidebarSeparator />
-        <NavLink className="SidebarItemHolder" exact to="/about">
-          <SidebarItem name="about" label="About" />
-        </NavLink>
-        <NavLink className="SidebarItemHolder" exact to="/github">
+        <a className="SidebarItemHolder" href="https://github.com/nikantic/react-currency-app" target="_blank" rel="noopener noreferrer">
           <SidebarItem name="github" label="GitHub" />
-        </NavLink>
-        <NavLink className="SidebarItemHolder" exact to="/contact">
+        </a>
+        <a className="SidebarItemHolder" href="https://nikantic.github.io/" target="_blank" rel="noopener noreferrer">
           <SidebarItem name="contact" label="Contact" />
-        </NavLink>
+        </a>
         <a
           className="SidebarSmallText"
           href="https://nikantic.github.io/"

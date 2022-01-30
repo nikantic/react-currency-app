@@ -1,10 +1,10 @@
 # React Currency App
 
-Currency Exchange App done in React and Redux. This project started as something small (simple app to display exchange rates) and grew into this full blown React app with real time conversions and store management in Redux. Deployed on Zeit (now Vercel).
+Currency Exchange App done in React and Redux. This project and proof of concept started as something small (simple app to display exchange rates) and grew into full blown React app with real time conversions, notifications, saved conversions and store management in Redux. Deployed on Zeit (now Vercel).
 
 ## Notes
 
-- Due to Exchange Rates API changes app is no longer using the newest updated currency rates. Local saved sample currency data is used instead.
+- Due to Exchange Rates API changes app is no longer using the newest currency rates. Local sample currency data is used instead.
 
 ## Features:
 
@@ -17,8 +17,6 @@ Currency Exchange App done in React and Redux. This project started as something
 ## Links
 
 LIVE: https://react-currency-app.now.sh/
-
-Code Sandbox: https://codesandbox.io/s/react-currency-app-ixglr
 
 ## Screenshot
 

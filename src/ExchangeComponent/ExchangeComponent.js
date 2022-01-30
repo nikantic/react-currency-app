@@ -11,7 +11,6 @@ import NotificationComponent from "../UI/NotificationComponent/NotificationCompo
 import TransactionsComponent from "../TransactionsComponent/TransactionsComponent";
 import EmptyStateComponent from "../UI/EmptyState/EmptyStateComponent";
 import ChartsComponent from "../ChartsComponent/ChartsComponent";
-import moment from "moment";
 import { connect } from "react-redux";
 import * as actionTypes from "../store/actions";
 import responseData from '../res_sample.json'
@@ -216,13 +215,8 @@ class ExchangeRates extends Component {
                         <div className="ContentTopHolder">
                           <div className="ContentTopHolderLeft">
                             <h2>Exchange Rates</h2>
-                            <h4>
-                              Date:{" "}
-                              {moment(data["date"], "YYYYMMDD").format(
-                                "MMMM Do YYYY"
-                              )}
-                            </h4>
-                            <h5>Source: European Central Bank</h5>
+                            <h4>Disclaimer</h4>
+                            <h5>Due to Exchange Rates API changes app is no longer using the newest currency rates.</h5>
                           </div>
                           <div>
                             <SearchComponent
